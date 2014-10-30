@@ -96,7 +96,7 @@
    <td><img src="img/cadastroUsuario/spacer.gif" width="1" height="20" border="0" alt="" /></td>
   </tr>
   <tr>
-   <td colspan="2"><input type="image" src="img/cadastroUsuario/cadastroUsuario_r13_c5.png" width="38" height="30" onClick="document.formCadastro.submit()"></td>
+   <td colspan="2"><input type="image" src="img/cadastroUsuario/cadastroUsuario_r13_c5.png" width="38" height="30" ></td>
    
    
  </form> 
