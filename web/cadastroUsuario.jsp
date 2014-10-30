@@ -68,7 +68,7 @@
 <form action="salvarNovoUsuario.jsp" method="post" name="formCadastro">
 
   <tr>
-   <td colspan="5"><input name="txtNome" type="text" style="height: 23px; width:273px;"></td>
+      <td colspan="5"><input name="txtNome" maxlength="55" type="text" style="height: 23px; width:273px;"></td>
    <td><img src="img/cadastroUsuario/spacer.gif" width="1" height="29" border="0" alt="" /></td>
   </tr>
   <tr>
@@ -76,7 +76,7 @@
    <td><img src="img/cadastroUsuario/spacer.gif" width="1" height="37" border="0" alt="" /></td>
   </tr>
   <tr>
-   <td colspan="5"><input name="txtEmail" type="text" style="height: 23px; width:273px;"></td>
+   <td colspan="5"><input name="txtEmail" maxlength="55" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" style="height: 23px; width:273px;"></td>
    <td><img src="img/cadastroUsuario/spacer.gif" width="1" height="29" border="0" alt="" /></td>
   </tr>
   <tr>
@@ -86,8 +86,8 @@
    <td><img src="img/cadastroUsuario/spacer.gif" width="1" height="36" border="0" alt="" /></td>
   </tr>
   <tr>
-   <td colspan="2"><input name="txtLogin" type="text" style="height: 23px; width:168px;"></td>
-   <td colspan="2"><input name="txtSenha" type="password" style="height: 23px; width:168px;"></td>
+   <td colspan="2"><input name="txtLogin" maxlength="55" type="text" style="height: 23px; width:168px;"></td>
+   <td colspan="2"><input name="txtSenha" maxlength="55" type="password" style="height: 23px; width:168px;"></td>
    <td><img src="img/cadastroUsuario/spacer.gif" width="1" height="29" border="0" alt="" /></td>
   </tr>
   <tr>

@@ -62,7 +62,7 @@
    <td><img src="img/index/spacer.gif" width="1" height="16" border="0" alt="" /></td>
   </tr>
   <tr>
-   <td rowspan="2"><input type="image" src="img/index/index_r6_c7.png" name="btnEntrar" onClick="document.formCadastro.submit()" width="100" height="46"/></td>
+   <td rowspan="2"><input type="image" maxlength="55" src="img/index/index_r6_c7.png" name="btnEntrar" onClick="document.formCadastro.submit()" width="100" height="46"/></td>
    <td rowspan="6"><img name="index_r6_c8" src="img/index/index_r6_c8.png" width="16" height="100" border="0" id="index_r6_c8" alt="" /></td>
    <td><img src="img/index/spacer.gif" width="1" height="19" border="0" alt="" /></td>
   </tr>
@@ -76,7 +76,7 @@
   </tr>
   <tr>
    <td rowspan="4"><img name="index_r9_c3" src="img/index/index_r9_c3.png" width="18" height="80" border="0" id="index_r9_c3" alt="" /></td>
-   <td rowspan="3" colspan="2"><input type="password" name="txtSenha" style="width:197px; height:20px;" /></td>
+   <td rowspan="3" colspan="2"><input maxlength="55" type="password" name="txtSenha" style="width:197px; height:20px;" /></td>
    <td><img src="img/index/spacer.gif" width="1" height="7" border="0" alt="" /></td>
   </tr>
   <tr>
