@@ -85,6 +85,35 @@ public class ContaDAO {
         }
         return lista;
     }
+    
+    public ArrayList<Conta> ConsultarTodos(int idUsuario, int mes, int ano) {
+
+        ArrayList<Conta> lista = new ArrayList<Conta>();
+        try {
+            //inicia a conexão com o banco
+            Session s = Conexao.openSession(Conexao.openConnection());
+            s.beginTransaction();
+            
+            //cria o Criteria na classe
+            Criteria c = s.createCriteria(Conta.class);
+            
+            //verifica no banco se existe registro com o id igual ao que veio no parametro
+            UsuarioDAO uDAO = new UsuarioDAO();
+            Usuario user = new Usuario();
+            user = uDAO.Consultar(idUsuario);
+            c.add(Restrictions.eq("usuario", user));
+            c.add(Restrictions.sqlRestriction("Month(data_criacao) = " + mes));
+            c.add(Restrictions.sqlRestriction("year(data_criacao) = " + ano));
+            lista = (ArrayList<Conta>)c.list();// cria a lista com os resultados
+
+            s.getTransaction().commit();//executa a transação
+            s.close();//fecha a conexão
+
+        } catch (Exception erro) {
+           erro.printStackTrace();
+        }
+        return lista;
+    }
 
     public void Editar(Conta conta) {
 

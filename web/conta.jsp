@@ -1,3 +1,6 @@
+<%@page import="br.com.server.model.Conta"%>
+<%@page import="br.com.server.dao.ContaDAO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Date"%>
 <%@page import="javax.management.modelmbean.RequiredModelMBean"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -134,6 +137,30 @@
    
    <div style="width:100%; border:1px solid; border-radius:5px; background-color:#FFF">
    
+       <table border="0" width="100%">
+       <%
+            ContaDAO cDAO = new ContaDAO();
+            ArrayList<Conta> lstConta = cDAO.ConsultarTodos(Integer.parseInt(session.getAttribute("idUsuario").toString()), mes, ano);
+            
+            for(int controle = 0; controle < lstConta.size(); controle++){
+       %>         
+       
+           <tr>
+               <td><% out.print("<a href='editarConta.jsp?idConta="+lstConta.get(controle).getId()+"'>"+lstConta.get(controle).getDescricao()+"</a>"); %></td><td>Saldo Atual</td><td width="30px"><img src="img/conta/conta_r1_c3_s1.png" /></td><td width="30px"><a href="excluirConta.jsp?idConta=<% out.print(lstConta.get(controle).getId()); %>"><img src="img/conta/conta_r1_c3_s2.png" /></a></td>
+           </tr>
+           <tr>
+               <td>Previsão: R$ -</td><td>R$ <% out.print(lstConta.get(controle).getValor_atual()); %></td><td colspan="2">&nbsp;</td>
+           </tr>
+           
+       <%         
+                if(controle < (lstConta.size() - 1)){
+                    out.print("<tr><td colspan='4'><hr width='100%'></td></tr>");
+                }
+           }
+            
+       %>
+       </table>
+       
    <p></p>
       <p></p>
          <p></p>
