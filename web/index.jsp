@@ -50,7 +50,7 @@
   <tr>
   
   <form action="autenticar.jsp" name="formLogin" method="post">
-  
+   
    <td colspan="2"><img name="index_r4_c3" src="img/index/index_r4_c3.png" width="174" height="43" border="0" id="index_r4_c3" alt="" /></td>
    <td><img src="img/index/spacer.gif" width="1" height="43" border="0" alt="" /></td>
   </tr>
