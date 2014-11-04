@@ -7,6 +7,7 @@ import br.com.server.model.Conta;
 import br.com.server.model.Usuario;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -141,9 +142,8 @@ public class ContaDAO {
                 //comando do Hibernate para inclusão de linhas SQLs comuns, neste caso o update
                 //temos que inserir a Classe que se refere e executar o comando ao final
                 s.createSQLQuery("update conta set descricao='"+descricao+"', "
-                        + "valor_inicial='"+valor_inicial+"',valor_atual='"+valor_atual+
-                        "',data_criacao='"+data_criacao+"',cancelado='"+cancelado+
-                        " where id="+id).addEntity(Conta.class).executeUpdate();
+                        + "valor_inicial="+valor_inicial+" where id="+id).addEntity(Conta.class).executeUpdate();
+                
             } 
             s.getTransaction().commit();//executa a transação
             s.close();//fecha a conexão
