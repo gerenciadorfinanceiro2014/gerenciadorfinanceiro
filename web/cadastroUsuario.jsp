@@ -1,3 +1,13 @@
+<%  
+//verifica se a sessao do usuario  com o ID é valida 
+if (session.getAttribute("idUsuario") == null)  
+{  
+        response.sendRedirect("index.jsp");  
+}  
+%> 
+
+
+
 <%-- 
     Document   : cadastroUsuario
     Created on : 14/10/2014, 23:15:55
