@@ -1,10 +1,3 @@
-<%  
-//verifica se a sessao do usuario  com o ID é valida 
-if (session.getAttribute("idUsuario") == null)  
-{  
-        response.sendRedirect("index.jsp");  
-}  
-%> 
 
 
 
