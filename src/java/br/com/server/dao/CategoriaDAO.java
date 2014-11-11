@@ -4,6 +4,7 @@ package br.com.server.dao;
 
 import br.com.server.Conexao;
 import br.com.server.model.Categoria;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -55,6 +56,30 @@ public class CategoriaDAO {
            erro.printStackTrace();
         }
         return categoria;
+    }
+    
+    public ArrayList<Categoria> Consultar() {
+
+        Categoria categoria = new Categoria();
+        ArrayList<Categoria> lista = new ArrayList<Categoria>();
+        try {
+            //inicia a conexão com o banco
+            Session s = Conexao.openSession(Conexao.openConnection());
+            s.beginTransaction();
+            
+            //cria o Criteria na classe
+            Criteria c = s.createCriteria(Categoria.class);
+            
+            //verifica no banco se existe registro com o id igual ao que veio no parametro
+            lista = (ArrayList<Categoria>)c.list();// cria a lista com os resultados
+
+            s.getTransaction().commit();//executa a transação
+            s.close();//fecha a conexão
+
+        } catch (Exception erro) {
+           erro.printStackTrace();
+        }
+        return lista;
     }
 
     public void Editar(Categoria categoria) {

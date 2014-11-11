@@ -1,3 +1,5 @@
+<%@page import="br.com.server.model.Categoria"%>
+<%@page import="br.com.server.dao.CategoriaDAO"%>
 <%@page import="br.com.server.model.Conta"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="br.com.server.dao.ContaDAO"%>
@@ -147,7 +149,7 @@
    <td rowspan="2" colspan="2"><img name="novareceita_r18_c5" src="img/novareceita/novareceita_r18_c5.png" width="20" height="47" border="0" id="novareceita_r18_c5" alt="" /></td>
    <td colspan="23">
    
-   <input type="text" name="txtTitulo" style="width:505px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
+   <input type="text" name="txtTitulo" style="width:505px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9;" />
    
 	</td>
    <td rowspan="2"><img name="novareceita_r18_c30" src="img/novareceita/novareceita_r18_c30.png" width="13" height="47" border="0" id="novareceita_r18_c30" alt="" /></td>
@@ -232,9 +234,15 @@
   <tr>
    <td rowspan="2" colspan="9">
    
-   <select name="categoriareceita" style="width:215px; height:30px;">
-   	
-   </select>
+       <select name="categoriareceita" style="width:215px; height:30px;">
+   	<%
+                CategoriaDAO catDAO = new CategoriaDAO();
+                ArrayList<Categoria> listaCategoria = catDAO.Consultar();
+                
+                for(int controle = 0; controle < listaCategoria.size(); controle++){ %>
+                   <option value="<% out.print(listaCategoria.get(controle).getId()); %> "> <% out.print(listaCategoria.get(controle).getDescricao()); %> </option>
+            <%    }
+            %>
    
    </td>
    <td rowspan="2" colspan="6">

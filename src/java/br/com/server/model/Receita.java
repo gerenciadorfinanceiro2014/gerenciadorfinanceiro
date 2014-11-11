@@ -25,7 +25,7 @@ public class Receita {
     private double valor;
     
     @Column(name = "efetuada")
-    private boolean efetuada;
+    private int efetuada;
 
     @ManyToOne
     @JoinColumn(name = "categoria")
@@ -94,14 +94,14 @@ public class Receita {
     /**
      * @return the efetuada
      */
-    public boolean isEfetuada() {
+    public int isEfetuada() {
         return efetuada;
     }
 
     /**
      * @param efetuada the efetuada to set
      */
-    public void setEfetuada(boolean efetuada) {
+    public void setEfetuada(int efetuada) {
         this.efetuada = efetuada;
     }
 

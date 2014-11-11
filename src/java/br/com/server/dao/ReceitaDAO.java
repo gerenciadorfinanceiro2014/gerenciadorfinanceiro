@@ -78,7 +78,7 @@ public class ReceitaDAO {
                 String descricao = receita.getDescricao();
                 String data = String.valueOf(receita.getData());
                 Double valor = receita.getValor();
-                boolean efetuada = receita.isEfetuada();
+                int efetuada = receita.isEfetuada();
                 Categoria categoria = receita.getCategoria();
                 Conta conta = receita.getConta();
                 

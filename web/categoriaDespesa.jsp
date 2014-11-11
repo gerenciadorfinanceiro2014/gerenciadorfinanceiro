@@ -64,7 +64,7 @@
    <td><img src="img/categoriadespesa/spacer.gif" width="1" height="19" border="0" alt="" /></td>
   </tr>
   <tr>
-   <td rowspan="11"><img name="categoriaDespesa_r9_c4" src="img/categoriadespesa/categoriaDespesa_r9_c4.png" width="230" height="472" border="0" id="categoriaDespesa_r9_c4" alt="" /></td>
+   <td rowspan="11"><img name="categoriaDespesa_r9_c4" src="img/categoriadespesa/categoriaDespesa_r9_c4.png" width="280" height="472" border="0" id="categoriaDespesa_r9_c4" alt="" /></td>
    <td rowspan="5"><img name="categoriaDespesa_r9_c5" src="img/categoriadespesa/categoriaDespesa_r9_c5.png" width="16" height="71" border="0" id="categoriaDespesa_r9_c5" alt="" /></td>
    <td colspan="2"><img name="categoriaDespesa_r9_c6" src="img/categoriadespesa/categoriaDespesa_r9_c6.png" width="490" height="24" border="0" id="categoriaDespesa_r9_c6" alt="" /></td>
    <td rowspan="5"><img name="categoriaDespesa_r9_c8" src="img/categoriadespesa/categoriaDespesa_r9_c8.png" width="23" height="71" border="0" id="categoriaDespesa_r9_c8" alt="" /></td>

@@ -4,6 +4,7 @@
     Author     : Mauricio
 --%>
 
+<%@page import="br.com.server.dao.ReceitaDAO"%>
 <%@page import="java.util.Date"%>
 <%@page import="br.com.server.dao.ContaDAO"%>
 <%@page import="br.com.server.dao.CategoriaDAO"%>
@@ -26,31 +27,34 @@
         
         <%
             if(request.getParameter("efetuada") != null){
-                receita.setEfetuada(true);
+                receita.setEfetuada(1);
             }else{
-                receita.setEfetuada(false);
+                receita.setEfetuada(0);
             }
             
-            String[] data = request.getParameter("txtData").toString().split("/");
-            int dia = Integer.parseInt(data[0]);
-            int mes = Integer.parseInt(data[1]);
-            int ano = Integer.parseInt(data[2]);
+            if(!request.getParameter("txtData").toString().isEmpty()){
+                String[] data = request.getParameter("txtData").toString().split("/");
+                int dia = Integer.parseInt(data[0]);
+                int mes = Integer.parseInt(data[1]);
+                int ano = Integer.parseInt(data[2]);
+                Date dataReceita = new Date(ano - 1900, mes, dia);
             
-            Date dataReceita = new Date(ano - 1900, mes, dia);
+                receita.setData(dataReceita);
+            }
             
-            receita.setData(dataReceita);
-            
-            //CategoriaDAO cDAO = new CategoriaDAO();
+            CategoriaDAO cDAO = new CategoriaDAO();
             ContaDAO contaDAO = new ContaDAO();
-            //receita.setCategoria(cDAO.Consultar(Integer.parseInt(request.getParameter("categoriareceita").toString())));
+            receita.setCategoria(cDAO.Consultar(Integer.parseInt(request.getParameter("categoriareceita").toString().trim())));
             receita.setConta(contaDAO.Consultar(Integer.parseInt(request.getParameter("contareceita").toString().trim())));
-        
-            out.print("BOSTA " + receita.getConta().getDescricao() + "Efetuada = " + receita.isEfetuada());
-           
+            ReceitaDAO rDAO = new ReceitaDAO();
             
+            rDAO.Salvar(receita);
         %>
         
-        
+        <script>
+            alert("Receita salva com Sucesso!");
+            window.location = "receita.jsp";            
+        </script>
         
         
     </body>
