@@ -21,9 +21,11 @@ public class ReceitaDAO {
             s.beginTransaction();
             
             s.save(receita);//salva os dados
-
             s.getTransaction().commit();//executa a transação
             s.close();//fecha a conexão
+            
+            if(receita.isEfetuada() == 1)
+                atualizarSaldo(receita, 1);
             
         } catch (Exception erro) {
             erro.printStackTrace();
@@ -95,6 +97,18 @@ public class ReceitaDAO {
         } catch (Exception erro) {
             erro.printStackTrace();
         }
+    }
+    // Operação 1 - Adiciona / 0 - Subtrai valor atual da conta.
+    public void atualizarSaldo(Receita receita, int operacao){
+        Conta conta = receita.getConta();
+        if(operacao == 1)
+            conta.setValor_atual(conta.getValor_atual() + receita.getValor());
+        else
+            conta.setValor_atual(conta.getValor_atual() - receita.getValor());
+        
+        ContaDAO cDAO = new ContaDAO();
+        cDAO.atualizaValor(conta);
+        
     }
 
     public void Excluir(int idReceita) {

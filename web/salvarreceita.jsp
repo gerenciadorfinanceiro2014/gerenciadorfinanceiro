@@ -37,7 +37,7 @@
                 int dia = Integer.parseInt(data[0]);
                 int mes = Integer.parseInt(data[1]);
                 int ano = Integer.parseInt(data[2]);
-                Date dataReceita = new Date(ano - 1900, mes, dia);
+                Date dataReceita = new Date(ano - 1900, mes, dia, new Date().getHours(), new Date().getMinutes(), new Date().getSeconds());
             
                 receita.setData(dataReceita);
             }

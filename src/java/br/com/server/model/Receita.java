@@ -18,7 +18,7 @@ public class Receita {
     private String descricao;
     
     @Column(name = "data")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date data;
     
     @Column(name = "valor")
