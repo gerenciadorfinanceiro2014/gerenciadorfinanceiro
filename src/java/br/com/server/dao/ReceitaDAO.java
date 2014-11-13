@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 public class ReceitaDAO {
@@ -60,6 +62,32 @@ public class ReceitaDAO {
         return receita;
     }
 
+    public int ConsultarNumUnico() {
+
+         int numeromax;
+        try {
+            //inicia a conexão com o banco
+            Session s = Conexao.openSession(Conexao.openConnection());
+            s.beginTransaction();
+            
+            //cria o Criteria na classe
+            Criteria c = s.createCriteria(Receita.class).setProjection(Projections.projectionList().add(Projections.max("num_unico")));
+            if(c.uniqueResult() != null)
+                numeromax = (Integer)c.uniqueResult();
+            else
+                numeromax = 0;
+            s.getTransaction().commit();//executa a transação
+            s.close();//fecha a conexão
+            
+            return numeromax + 1;
+
+        } catch (Exception erro) {
+           erro.printStackTrace();
+           return 0;
+        }
+        
+    }
+    
     public void Editar(Receita receita) {
 
         try {

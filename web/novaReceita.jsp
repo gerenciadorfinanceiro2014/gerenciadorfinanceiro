@@ -181,7 +181,7 @@
    
    <input type="checkbox" name="receitafixa" value="true" >Receita Fixa
    <span>&nbsp;&nbsp;&nbsp;<b>Qtd.</b></span> <input type="text" name="txtQtd" style="width:61px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
-   <span>&nbsp;&nbsp;&nbsp;<b>Valor</b></span> <input type="text" name="txtQtd" style="width:79px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
+   <span>&nbsp;&nbsp;&nbsp;<b>Valor</b></span> <input type="text" name="txtValorParcela" style="width:79px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
    
    </td>
    <td rowspan="3"><img name="novareceita_r22_c30" src="img/novareceita/novareceita_r22_c30.png" width="13" height="55" border="0" id="novareceita_r22_c30" alt="" /></td>
