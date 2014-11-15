@@ -181,15 +181,24 @@ public class ReceitaDAO {
             s.beginTransaction();
             
             //cria o Criteria na classe
-            Criteria c = s.createCriteria(Receita.class);
-            c.add(Restrictions.sqlRestriction("Month(data_criacao) = " + mes));
-            c.add(Restrictions.sqlRestriction("year(data_criacao) = " + ano));
-            ArrayList<Receita> lstReceita = (ArrayList<Receita>)c.list();
+            Criteria cConta = s.createCriteria(Conta.class);
+            cConta.add(Restrictions.sqlRestriction("usuario = " + idUsuario));
+            ArrayList<Conta> lstConta = (ArrayList<Conta>)cConta.list();
             
-            for(int controle = 0; controle < lstReceita.size(); controle++){
-                s.createSQLQuery("select r.id, r.descricao, r.efetuada, r.valor, r.max_parcela, r.num_parcela from receita r inner join conta c on c.id = r.conta"
-                                    + " where r.id = " + lstReceita.get(controle).getId() + " and c.id = " + idUsuario);
-                lista.add((Receita)c.uniqueResult());// cria a lista com os resultados
+            
+            
+            ArrayList<Receita> receita = new ArrayList<Receita>();
+            for(int controle = 0; controle < lstConta.size(); controle++){
+                Criteria c = s.createCriteria(Receita.class);
+                c.add(Restrictions.sqlRestriction("Month(data) = " + mes));
+                c.add(Restrictions.sqlRestriction("year(data) = " + ano));
+                c.add(Restrictions.sqlRestriction("conta = " + lstConta.get(controle).getId()));
+                receita = (ArrayList<Receita>)c.list();
+                if(receita != null){
+                    for(int idx = 0;idx < receita.size();idx++){
+                        lista.add(receita.get(idx));// cria a lista com os resultados
+                    }
+                }
             }
                 
             s.getTransaction().commit();//executa a transação

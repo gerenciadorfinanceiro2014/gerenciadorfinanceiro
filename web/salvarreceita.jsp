@@ -65,7 +65,10 @@
                        rDAO.Salvar(receita);        
                    }
                 }
-            
+            }else{
+                receita.setMax_parcela(1); 
+                receita.setNum_parcela(1);
+                rDAO.Salvar(receita);
             }
             
             
