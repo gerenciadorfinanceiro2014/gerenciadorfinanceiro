@@ -5,6 +5,8 @@ import br.com.server.Conexao;
 import br.com.server.model.Categoria;
 import br.com.server.model.Conta;
 import br.com.server.model.Despesa;
+import br.com.server.model.Usuario;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -128,4 +130,9 @@ public class DespesaDAO {
             erro.printStackTrace();
         }
     }
+    
+    
+    
+    
+    
 }

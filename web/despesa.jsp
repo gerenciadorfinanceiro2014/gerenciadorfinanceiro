@@ -1,3 +1,9 @@
+<%@page import="br.com.server.model.Despesa"%>
+<%@page import="br.com.server.dao.DespesaDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="br.com.server.model.Conta"%>
+<%@page import="br.com.server.dao.ContaDAO"%>
+<%@page import="java.util.Date"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0014)about:internet -->
@@ -51,16 +57,58 @@
    <td rowspan="2" colspan="2">
    
    	<div style="width:402px; height:30px; border:1px solid; border-radius:12px; background-color:#FFF">
-        <table>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
-            </tr>
-        </table>
-    </div>
-   
-   
+         <%
+                    Integer mes = null;
+                    Integer ano = null;
+                    if(request.getParameter("m") == null && request.getParameter("a") == null){
+                        Date date = new Date();
+                        mes = date.getMonth();
+                        ano = 1900 + date.getYear();
+                    }else{
+                        mes = Integer.parseInt(request.getParameter("m"));
+                        ano = Integer.parseInt(request.getParameter("a"));
+                    }
+
+               %>
+               
+               <script language="JavaScript">
+                   function anterior(mes, ano){
+                       mes--;
+                       if(mes<1){
+                           mes = 12;
+                           ano--;
+                       }
+                       window.location="despesa.jsp?m=" + mes + "&a=" + ano;
+                   }
+                   function proximo(mes, ano){
+                       mes++;
+                       if(mes>12){
+                           mes = 1;
+                           ano++;
+                       }
+                       window.location="despesa.jsp?m=" + mes + "&a=" + ano;
+                   }
+                   
+                   
+                   
+               </script>
+               
+               
+                    
+               <table style="height:30px;">
+            	<tr>
+                    <td><a href="#"><img  src="img/conta/conta_r1_c1_s1.png" style="height:26px;" onclick="<% out.print("anterior(" + mes + "," + ano + ");"); %>" /></a></td>
+                    <td style="width: 335px; text-align:center;"> 
+                    
+                        <%
+                           out.print(mes + " / " + ano);
+                            
+                        %>
+                    </td>
+                        <td><a href="#"><img  src="img/conta/conta_r1_c4_s1.png" style="height:26px;" onclick="<% out.print("proximo(" + mes + "," + ano + ");"); %>" /></a></td>
+                </tr>
+            </table>
+        </div>
    
    </td>
    <td rowspan="5"><img name="despesa_r5_c10" src="img/despesa/despesa_r5_c10.png" width="149" height="54" border="0" id="despesa_r5_c10" alt="" /></td>
@@ -89,6 +137,31 @@
    
    <div style="width:100%; border:1px solid; border-radius:5px; background-color:#FFF">
    
+    <table border="0" width="100%">
+       <%
+            DespesaDAO dDAO = new DespesaDAO();
+            Despesa despesa = new Despesa();
+            ArrayList<Despesa> lstDespesa = dDAO.Consultar(despesa.getId());
+            
+            for(int controle = 0; controle < lstDespesa.size(); controle++){
+       %>         
+       
+           <tr>
+               <td><% out.print("<a href='editarDespesa.jsp?idDespesa="+lstDespesa.get(controle).getId()+"'>"+lstDespesa.get(controle).getDescricao()+"</a>"); %></td><td>Valor:</td><td width="30px"><img src="img/conta/conta_r1_c3_s1.png" /></td><td width="30px"><a href="excluirDespesa.jsp?idDespesa=<% out.print(lstDespesa.get(controle).getValor()); %>"><img src="img/conta/conta_r1_c3_s2.png" /></a></td>
+           </tr>
+           <tr>
+               <td>Previsão: R$ -</td><td>R$ <% out.print(lstDespesa.get(controle).getValor()); %></td><td colspan="2">&nbsp;</td>
+           </tr>
+           
+       <%         
+                if(controle < (lstDespesa.size() - 1)){
+                    out.print("<tr><td colspan='4'><hr width='100%'></td></tr>");
+                }
+           }
+            
+       %>
+       </table>
+       
    <p></p>
       <p></p>
          <p></p>

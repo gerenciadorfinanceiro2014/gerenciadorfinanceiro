@@ -71,7 +71,7 @@
    <td colspan="5"><img name="categoriaDespesa_r9_c9" src="img/categoriadespesa/categoriaDespesa_r9_c9.png" width="194" height="24" border="0" id="categoriaDespesa_r9_c9" alt="" /></td>
    <td><img src="img/categoriadespesa/spacer.gif" width="1" height="24" border="0" alt="" /></td>
   </tr>
-  <form name="salvarcategoriadespesa" action="salvarcategoria.jsp" method="post" >
+  <form name="salvarcategoriadespesa" action="salvarcategoriadespesa.jsp?voltar=1" method="post" >
   <tr>
    <td rowspan="2" colspan="2">
    

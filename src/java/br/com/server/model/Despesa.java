@@ -34,6 +34,8 @@ public class Despesa {
     
     @Column(name = "efetuada")
     private boolean efetuada;
+    
+    
 
     @ManyToOne
     @JoinColumn(name = "categoria")
