@@ -5,6 +5,8 @@ import br.com.server.Conexao;
 import br.com.server.model.Categoria;
 import br.com.server.model.Conta;
 import br.com.server.model.Receita;
+import br.com.server.model.Usuario;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -168,5 +170,34 @@ public class ReceitaDAO {
         } catch (Exception erro) {
             erro.printStackTrace();
         }
+    }
+    
+    public ArrayList<Receita> ConsultarTodos(int idUsuario, int mes, int ano) {
+
+        ArrayList<Receita> lista = new ArrayList<Receita>();
+        try {
+            //inicia a conexão com o banco
+            Session s = Conexao.openSession(Conexao.openConnection());
+            s.beginTransaction();
+            
+            //cria o Criteria na classe
+            Criteria c = s.createCriteria(Receita.class);
+            c.add(Restrictions.sqlRestriction("Month(data_criacao) = " + mes));
+            c.add(Restrictions.sqlRestriction("year(data_criacao) = " + ano));
+            ArrayList<Receita> lstReceita = (ArrayList<Receita>)c.list();
+            
+            for(int controle = 0; controle < lstReceita.size(); controle++){
+                s.createSQLQuery("select r.id, r.descricao, r.efetuada, r.valor, r.max_parcela, r.num_parcela from receita r inner join conta c on c.id = r.conta"
+                                    + " where r.id = " + lstReceita.get(controle).getId() + " and c.id = " + idUsuario);
+                lista.add((Receita)c.uniqueResult());// cria a lista com os resultados
+            }
+                
+            s.getTransaction().commit();//executa a transação
+            s.close();//fecha a conexão
+
+        } catch (Exception erro) {
+           erro.printStackTrace();
+        }
+        return lista;
     }
 }
