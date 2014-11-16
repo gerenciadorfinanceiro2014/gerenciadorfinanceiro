@@ -26,7 +26,7 @@
                          property="descricao"
                          param="txtTitulo" />
         <jsp:setProperty name="despesa"
-                         property="valor"
+                         property="valortotal"
                          param="txtValor" />
         
         <%
@@ -39,9 +39,9 @@
             if(!request.getParameter("txtData").toString().isEmpty()){
                 String[] data = request.getParameter("txtData").toString().split("/");
                 int dia = Integer.parseInt(data[0]);
-                int mes = Integer.parseInt(data[1]);
+                int mes = Integer.parseInt(data[1]) - 1;
                 int ano = Integer.parseInt(data[2]);
-                Date dataDespesa = new Date(ano - 1900, mes, dia);
+                 Date dataDespesa = new Date(ano - 1900, mes , dia, new Date().getHours(), new Date().getMinutes(), new Date().getSeconds());
             
                 despesa.setData(dataDespesa);
             }
@@ -50,15 +50,36 @@
             ContaDAO contaDAO = new ContaDAO();
             despesa.setCategoria(cDAO.Consultar(Integer.parseInt(request.getParameter("categoriadespesa").toString().trim())));
             despesa.setConta(contaDAO.Consultar(Integer.parseInt(request.getParameter("contadespesa").toString().trim())));
-            
             DespesaDAO dDAO = new DespesaDAO();
-            
-            dDAO.Salvar(despesa);
+            despesa.setNum_unico(dDAO.ConsultarNumUnico());
+           
+            if(request.getParameter("receitafixa") != null && request.getParameter("txtQtd").trim() != null && request.getParameter("txtValorParcela").trim() != null){
+                despesa.setMax_parcela(Integer.parseInt(request.getParameter("txtQtd").trim()));
+                if(despesa.getMax_parcela() < 2){
+                   despesa.setMax_parcela(1); 
+                   despesa.setNum_parcela(1);
+                   dDAO.Salvar(despesa); 
+                }else{
+                   for(int controle = 1; controle <= despesa.getMax_parcela(); controle++){
+                       despesa.setNum_parcela(controle);
+                       if(controle > 1){
+                           despesa.setValor(Double.parseDouble(request.getParameter("txtValorParcela").trim()));
+                           despesa.setEfetuada(false);
+                       }
+                              
+                   }
+                   dDAO.Salvar(despesa); 
+                }
+            }else{
+                despesa.setMax_parcela(1); 
+                despesa.setNum_parcela(1);
+                 dDAO.Salvar(despesa); 
+            }
         %>
         
         <script>
             alert("Despesa salva com Sucesso!");
-            window.location = "novaDespesa.jsp";            
+            window.location = "despesa.jsp";            
         </script>
         
         

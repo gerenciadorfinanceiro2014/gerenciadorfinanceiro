@@ -138,24 +138,25 @@
    <div style="width:100%; border:1px solid; border-radius:5px; background-color:#FFF">
    
     <table border="0" width="100%">
-       <%
-            DespesaDAO dDAO = new DespesaDAO();
-            Despesa despesa = new Despesa();
-            ArrayList<Despesa> lstDespesa = dDAO.Consultar(despesa.getId());
-            
+      
+         <%
+            DespesaDAO rDAO = new DespesaDAO();
+            ArrayList<Despesa> lstDespesa = rDAO.ConsultarTodos(Integer.parseInt(session.getAttribute("idUsuario").toString()), mes, ano);
+            double somaDespesa = 0;
             for(int controle = 0; controle < lstDespesa.size(); controle++){
+                somaDespesa += lstDespesa.get(controle).getValor();
        %>         
        
            <tr>
-               <td><% out.print("<a href='editarDespesa.jsp?idDespesa="+lstDespesa.get(controle).getId()+"'>"+lstDespesa.get(controle).getDescricao()+"</a>"); %></td><td>Valor:</td><td width="30px"><img src="img/conta/conta_r1_c3_s1.png" /></td><td width="30px"><a href="excluirDespesa.jsp?idDespesa=<% out.print(lstDespesa.get(controle).getValor()); %>"><img src="img/conta/conta_r1_c3_s2.png" /></a></td>
+               <td><% out.print("<a href='editarDespesa.jsp?idDespesa="+lstDespesa.get(controle).getId()+"'>"+lstDespesa.get(controle).getDescricao()+"</a>"); %></td><td align="center">Parcelas</td><td align="center">R$ <%out.print(lstDespesa.get(controle).getValor()); %></td><td width="10px"><% if(lstDespesa.get(controle).isEfetuada() == false)out.print("<img src='img/conta/conta_r1_c3_s1.png' />");  %></td><td width="30px"><a href="excluirDespesa.jsp?idDespesa=<% out.print(lstDespesa.get(controle).getId()); %>"><img src="img/conta/conta_r1_c3_s2.png" /></a></td>
            </tr>
            <tr>
-               <td>Previsão: R$ -</td><td>R$ <% out.print(lstDespesa.get(controle).getValor()); %></td><td colspan="2">&nbsp;</td>
+               <td><% out.print(lstDespesa.get(controle).getData().toString().substring(8, 10) + "/" + lstDespesa.get(controle).getData().toString().substring(5, 7) + "/" + lstDespesa.get(controle).getData().toString().substring(0, 4)); %></td><td align="center"><% out.print(lstDespesa.get(controle).getNum_parcela() + " / " + lstDespesa.get(controle).getMax_parcela()); %></td><td colspan="2">&nbsp;</td>
            </tr>
            
        <%         
                 if(controle < (lstDespesa.size() - 1)){
-                    out.print("<tr><td colspan='4'><hr width='100%'></td></tr>");
+                    out.print("<tr><td colspan='5'><hr width='100%'></td></tr>");
                 }
            }
             
@@ -181,8 +182,13 @@
               			&nbsp;&nbsp;&nbsp;
               			&nbsp;&nbsp;&nbsp;
               			&nbsp;&nbsp;&nbsp;                                                
-                        R$ -
-              			
+                        <%
+                                if(somaDespesa > 0)
+                                    out.print("R$ " +somaDespesa);
+                                else
+                                    out.print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R$ -");
+       
+                            %>
               
               </b></font>
    		</div>

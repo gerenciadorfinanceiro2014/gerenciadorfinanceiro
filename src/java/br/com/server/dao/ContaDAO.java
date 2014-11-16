@@ -31,6 +31,14 @@ public class ContaDAO {
             erro.printStackTrace();
         }
     }
+     
+       public void atualizaValor(Conta conta){
+        Session s = Conexao.openSession(Conexao.openConnection());
+        s.beginTransaction();
+        s.createSQLQuery("update conta set valor_atual="+conta.getValor_atual()+" where id="+conta.getId()).addEntity(Conta.class).executeUpdate();
+        s.getTransaction().commit();//executa a transação
+        s.close();//fecha a conexão
+    }
 
     public Conta Consultar(int idConta) {
 

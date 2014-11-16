@@ -117,7 +117,7 @@
    <td rowspan="2"><img name="novaDespesa_r11_c9" src="img/novadespesa/novaDespesa_r11_c9.png" width="31" height="34" border="0" id="novaDespesa_r11_c9" alt="" /></td>
    <td rowspan="2" colspan="7">
    
-   <input type="text" name="txtValor" value="<% out.print(despesa.getValor()); %>" style="width:175px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
+   <input type="text" name="txtValor" value="<% out.print(despesa.getValortotal()); %>" style="width:175px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
    
    </td>
    <td rowspan="4" colspan="2"><img name="novaDespesa_r11_c17" src="img/novadespesa/novaDespesa_r11_c17.png" width="22" height="48" border="0" id="novaDespesa_r11_c17" alt="" /></td>
@@ -190,8 +190,8 @@
    <td colspan="15">
    
    <input type="checkbox" name="receitafixa" value="true" >Receita Fixa
-   <span>&nbsp;&nbsp;&nbsp;<b>Qtd.</b></span> <input type="text" name="txtQtd" style="width:61px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
-   <span>&nbsp;&nbsp;&nbsp;<b>Valor</b></span> <input type="text" name="txtQtd" style="width:79px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
+       <span>&nbsp;&nbsp;&nbsp;<b>Qtd.</b></span> <input type="text" name="txtQtd" value="<% out.print(despesa.getNum_parcela()); %>" style="width:61px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
+       <span>&nbsp;&nbsp;&nbsp;<b>Valor</b></span> <input type="text" name="txtValorParcela" value="<% out.print(despesa.getValor()); %>" style="width:79px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
    
    
    </td>
