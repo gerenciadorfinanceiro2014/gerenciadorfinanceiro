@@ -37,7 +37,7 @@
                 int dia = Integer.parseInt(data[0]);
                 int mes = Integer.parseInt(data[1]);
                 int ano = Integer.parseInt(data[2]);
-                Date dataReceita = new Date(ano - 1900, mes, dia);
+                Date dataReceita = new Date(ano - 1900, mes, dia, new Date().getHours(), new Date().getMinutes(), new Date().getSeconds());
             
                 receita.setData(dataReceita);
             }
@@ -47,8 +47,31 @@
             receita.setCategoria(cDAO.Consultar(Integer.parseInt(request.getParameter("categoriareceita").toString().trim())));
             receita.setConta(contaDAO.Consultar(Integer.parseInt(request.getParameter("contareceita").toString().trim())));
             ReceitaDAO rDAO = new ReceitaDAO();
+            receita.setNum_unico(rDAO.ConsultarNumUnico());
             
-            rDAO.Salvar(receita);
+            if(request.getParameter("receitafixa") != null && request.getParameter("txtQtd").trim() != null && request.getParameter("txtValorParcela").trim() != null){
+                receita.setMax_parcela(Integer.parseInt(request.getParameter("txtQtd").trim()));
+                if(receita.getMax_parcela() < 2){
+                   receita.setMax_parcela(1); 
+                   receita.setNum_parcela(1);
+                   rDAO.Salvar(receita);
+                }else{
+                   for(int controle = 1; controle <= receita.getMax_parcela(); controle++){
+                       receita.setNum_parcela(controle);
+                       if(controle > 1){
+                           receita.setValor(Double.parseDouble(request.getParameter("txtValorParcela").trim()));
+                           receita.setEfetuada(0);
+                       }
+                       rDAO.Salvar(receita);        
+                   }
+                }
+            }else{
+                receita.setMax_parcela(1); 
+                receita.setNum_parcela(1);
+                rDAO.Salvar(receita);
+            }
+            
+            
         %>
         
         <script>

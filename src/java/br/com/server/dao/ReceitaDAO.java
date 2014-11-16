@@ -5,10 +5,14 @@ import br.com.server.Conexao;
 import br.com.server.model.Categoria;
 import br.com.server.model.Conta;
 import br.com.server.model.Receita;
+import br.com.server.model.Usuario;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 public class ReceitaDAO {
@@ -21,9 +25,11 @@ public class ReceitaDAO {
             s.beginTransaction();
             
             s.save(receita);//salva os dados
-
             s.getTransaction().commit();//executa a transação
             s.close();//fecha a conexão
+            
+            if(receita.isEfetuada() == 1)
+                atualizarSaldo(receita, 1);
             
         } catch (Exception erro) {
             erro.printStackTrace();
@@ -58,6 +64,32 @@ public class ReceitaDAO {
         return receita;
     }
 
+    public int ConsultarNumUnico() {
+
+         int numeromax;
+        try {
+            //inicia a conexão com o banco
+            Session s = Conexao.openSession(Conexao.openConnection());
+            s.beginTransaction();
+            
+            //cria o Criteria na classe
+            Criteria c = s.createCriteria(Receita.class).setProjection(Projections.projectionList().add(Projections.max("num_unico")));
+            if(c.uniqueResult() != null)
+                numeromax = (Integer)c.uniqueResult();
+            else
+                numeromax = 0;
+            s.getTransaction().commit();//executa a transação
+            s.close();//fecha a conexão
+            
+            return numeromax + 1;
+
+        } catch (Exception erro) {
+           erro.printStackTrace();
+           return 0;
+        }
+        
+    }
+    
     public void Editar(Receita receita) {
 
         try {
@@ -96,6 +128,18 @@ public class ReceitaDAO {
             erro.printStackTrace();
         }
     }
+    // Operação 1 - Adiciona / 0 - Subtrai valor atual da conta.
+    public void atualizarSaldo(Receita receita, int operacao){
+        Conta conta = receita.getConta();
+        if(operacao == 1)
+            conta.setValor_atual(conta.getValor_atual() + receita.getValor());
+        else
+            conta.setValor_atual(conta.getValor_atual() - receita.getValor());
+        
+        ContaDAO cDAO = new ContaDAO();
+        cDAO.atualizaValor(conta);
+        
+    }
 
     public void Excluir(int idReceita) {
 
@@ -126,5 +170,43 @@ public class ReceitaDAO {
         } catch (Exception erro) {
             erro.printStackTrace();
         }
+    }
+    
+    public ArrayList<Receita> ConsultarTodos(int idUsuario, int mes, int ano) {
+
+        ArrayList<Receita> lista = new ArrayList<Receita>();
+        try {
+            //inicia a conexão com o banco
+            Session s = Conexao.openSession(Conexao.openConnection());
+            s.beginTransaction();
+            
+            //cria o Criteria na classe
+            Criteria cConta = s.createCriteria(Conta.class);
+            cConta.add(Restrictions.sqlRestriction("usuario = " + idUsuario));
+            ArrayList<Conta> lstConta = (ArrayList<Conta>)cConta.list();
+            
+            
+            
+            ArrayList<Receita> receita = new ArrayList<Receita>();
+            for(int controle = 0; controle < lstConta.size(); controle++){
+                Criteria c = s.createCriteria(Receita.class);
+                c.add(Restrictions.sqlRestriction("Month(data) = " + mes));
+                c.add(Restrictions.sqlRestriction("year(data) = " + ano));
+                c.add(Restrictions.sqlRestriction("conta = " + lstConta.get(controle).getId()));
+                receita = (ArrayList<Receita>)c.list();
+                if(receita != null){
+                    for(int idx = 0;idx < receita.size();idx++){
+                        lista.add(receita.get(idx));// cria a lista com os resultados
+                    }
+                }
+            }
+                
+            s.getTransaction().commit();//executa a transação
+            s.close();//fecha a conexão
+
+        } catch (Exception erro) {
+           erro.printStackTrace();
+        }
+        return lista;
     }
 }

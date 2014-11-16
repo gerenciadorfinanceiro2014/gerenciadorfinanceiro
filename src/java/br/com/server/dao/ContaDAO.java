@@ -161,6 +161,13 @@ public class ContaDAO {
         }
     }
 
+    public void atualizaValor(Conta conta){
+        Session s = Conexao.openSession(Conexao.openConnection());
+        s.beginTransaction();
+        s.createSQLQuery("update conta set valor_atual="+conta.getValor_atual()+" where id="+conta.getId()).addEntity(Conta.class).executeUpdate();
+        s.getTransaction().commit();//executa a transação
+        s.close();//fecha a conexão
+    }
     
     public void Transferencia(Conta contaOrig, Conta contaDest, double valor) {
 

@@ -18,11 +18,20 @@ public class Receita {
     private String descricao;
     
     @Column(name = "data")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date data;
     
     @Column(name = "valor")
     private double valor;
+    
+    @Column(name = "numero_unico")
+    private int num_unico;
+    
+    @Column(name = "num_parcela")
+    private int num_parcela;
+    
+    @Column(name = "max_parcela")
+    private int max_parcela;
     
     @Column(name = "efetuada")
     private int efetuada;
@@ -131,6 +140,30 @@ public class Receita {
      */
     public void setConta(Conta conta) {
         this.conta = conta;
+    }
+
+    public int getMax_parcela() {
+        return max_parcela;
+    }
+
+    public void setMax_parcela(int max_parcela) {
+        this.max_parcela = max_parcela;
+    }
+
+    public int getNum_parcela() {
+        return num_parcela;
+    }
+
+    public void setNum_parcela(int num_parcela) {
+        this.num_parcela = num_parcela;
+    }
+
+    public int getNum_unico() {
+        return num_unico;
+    }
+
+    public void setNum_unico(int num_unico) {
+        this.num_unico = num_unico;
     }
 
     

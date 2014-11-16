@@ -1,3 +1,7 @@
+<%@page import="br.com.server.model.Receita"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="br.com.server.dao.ReceitaDAO"%>
+<%@page import="java.util.Date"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0014)about:internet -->
@@ -37,7 +41,7 @@
    <td><img src="img/receita/spacer.gif" width="1" height="55" border="0" alt="" /></td>
   </tr>
   <tr>
-   <td rowspan="17" width="100px"><img name="receita_r3_c4" src="img/receita/receita_r3_c4.png" width="27" height="577" border="0" id="receita_r3_c4" alt="" /></td>
+   <td rowspan="17" width="100px"><img name="receita_r3_c4" src="img/receita/receita_r3_c4.png" width="240" height="577" border="0" id="receita_r3_c4" alt="" /></td>
    <td rowspan="3" colspan="3"><img name="receita_r3_c5" src="img/receita/receita_r3_c5.png" width="185" height="37" border="0" id="receita_r3_c5" alt="" /></td>
    <td rowspan="2" colspan="4"><img name="receita_r3_c8" src="img/receita/receita_r3_c8.png" width="599" height="33" border="0" id="receita_r3_c8" alt="" /></td>
    <td rowspan="17"><img name="receita_r3_c12" src="img/receita/receita_r3_c12.png" width="30" height="577" border="0" id="receita_r3_c12" alt="" /></td>
@@ -51,13 +55,57 @@
    <td rowspan="2" colspan="3">
    	
     <div style="width:402px; height:30px; border:1px solid; border-radius:12px; background-color:#FFF">
-        	<table>
+        	 <%
+                    Integer mes = null;
+                    Integer ano = null;
+                    if(request.getParameter("m") == null && request.getParameter("a") == null){
+                        Date date = new Date();
+                        mes = date.getMonth();
+                        ano = 1900 + date.getYear();
+                    }else{
+                        mes = Integer.parseInt(request.getParameter("m"));
+                        ano = Integer.parseInt(request.getParameter("a"));
+                    }
+
+               %>
+               
+               <script language="JavaScript">
+                   function anterior(mes, ano){
+                       mes--;
+                       if(mes<1){
+                           mes = 12;
+                           ano--;
+                       }
+                       window.location="receita.jsp?m=" + mes + "&a=" + ano;
+                   }
+                   function proximo(mes, ano){
+                       mes++;
+                       if(mes>12){
+                           mes = 1;
+                           ano++;
+                       }
+                       window.location="receita.jsp?m=" + mes + "&a=" + ano;
+                   }
+                   
+                   
+                   
+               </script>
+               
+               
+                    
+               <table style="height:30px;">
             	<tr>
-                	<td></td>
-                    <td></td>
-                    <td>
+                    <td><a href="#"><img  src="img/conta/conta_r1_c1_s1.png" style="height:26px;" onclick="<% out.print("anterior(" + mes + "," + ano + ");"); %>" /></a></td>
+                    <td style="width: 335px; text-align:center;"> 
+                    
+                        <%
+                           out.print(mes + " / " + ano);
+                            
+                        %>
+                    </td>
+                        <td><a href="#"><img  src="img/conta/conta_r1_c4_s1.png" style="height:26px;" onclick="<% out.print("proximo(" + mes + "," + ano + ");"); %>" /></a></td>
                 </tr>
-            </table>
+            </table>    
         </div>
    
    
@@ -84,9 +132,34 @@
    <td><img src="img/receita/spacer.gif" width="1" height="2" border="0" alt="" /></td>
   </tr>
   <tr>
-   <td rowspan="2" colspan="7" style="vertical-align:top;">
-   <div style="width:85%; border:1px solid; border-radius:5px; background-color:#FFF">
-   
+   <td rowspan="27" colspan="7" style="vertical-align:top;">
+   <div style="width:100%; border:1px solid; border-radius:5px; background-color:#FFF">
+        <table border="0" width="100%">
+       <%
+            ReceitaDAO rDAO = new ReceitaDAO();
+            ArrayList<Receita> lstReceita = rDAO.ConsultarTodos(Integer.parseInt(session.getAttribute("idUsuario").toString()), mes, ano);
+            double somaReceita = 0;
+            for(int controle = 0; controle < lstReceita.size(); controle++){
+                somaReceita += lstReceita.get(controle).getValor();
+       %>         
+       
+           <tr>
+               <td><% out.print("<a href='editarReceita.jsp?idReceita="+lstReceita.get(controle).getId()+"'>"+lstReceita.get(controle).getDescricao()+"</a>"); %></td><td align="center">Parcelas</td><td align="center">R$ <%out.print(lstReceita.get(controle).getValor()); %></td><td width="10px"><% if(lstReceita.get(controle).isEfetuada() == 0)out.print("<img src='img/conta/conta_r1_c3_s1.png' />");  %></td><td width="30px"><a href="excluirReceita.jsp?idReceita=<% out.print(lstReceita.get(controle).getId()); %>"><img src="img/conta/conta_r1_c3_s2.png" /></a></td>
+           </tr>
+           <tr>
+               <td><% out.print(lstReceita.get(controle).getData().toString().substring(8, 10) + "/" + lstReceita.get(controle).getData().toString().substring(5, 7) + "/" + lstReceita.get(controle).getData().toString().substring(0, 4)); %></td><td align="center"><% out.print(lstReceita.get(controle).getNum_parcela() + " / " + lstReceita.get(controle).getMax_parcela()); %></td><td colspan="2">&nbsp;</td>
+           </tr>
+           
+       <%         
+                if(controle < (lstReceita.size() - 1)){
+                    out.print("<tr><td colspan='5'><hr width='100%'></td></tr>");
+                }
+           }
+            
+       %>
+       </table>
+       
+       
    <p></p>
       <p></p>
          <p></p>
@@ -98,15 +171,17 @@
               <font face="Arial, Helvetica, sans-serif"  >&nbsp;&nbsp;&nbsp;<b>
               			TOTAL 
               			&nbsp;&nbsp;&nbsp;
-              			&nbsp;&nbsp;&nbsp;
-              			&nbsp;&nbsp;&nbsp;                                                
-              			&nbsp;&nbsp;&nbsp;
-              			&nbsp;&nbsp;&nbsp;
-              			&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;
               			&nbsp;&nbsp;&nbsp;
               			&nbsp;&nbsp;&nbsp;
               			&nbsp;&nbsp;&nbsp;                                                
-                        R$ -
+                        <%
+                                if(somaReceita > 0)
+                                    out.print("R$ " +somaReceita);
+                                else
+                                    out.print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R$ -");
+       
+                            %>
               			
               
               </b></font>
