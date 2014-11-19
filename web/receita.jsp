@@ -144,7 +144,7 @@
        %>         
        
            <tr>
-               <td><% out.print("<a href='editarReceita.jsp?idReceita="+lstReceita.get(controle).getId()+"'>"+lstReceita.get(controle).getDescricao()+"</a>"); %></td><td align="center">Parcelas</td><td align="center">R$ <%out.print(lstReceita.get(controle).getValor()); %></td><td width="10px"><% if(lstReceita.get(controle).isEfetuada() == 0)out.print("<img src='img/conta/conta_r1_c3_s1.png' />");  %></td><td width="30px"><a href="excluirReceita.jsp?idReceita=<% out.print(lstReceita.get(controle).getId()); %>"><img src="img/conta/conta_r1_c3_s2.png" /></a></td>
+               <td><% out.print("<a href='editarReceita.jsp?idReceita="+lstReceita.get(controle).getId()+"'>"+lstReceita.get(controle).getDescricao()+"</a>"); %></td><td align="center">Parcelas</td><td align="center">R$ <%out.print(lstReceita.get(controle).getValor()); %></td><td width="10px"><% if(lstReceita.get(controle).isEfetuada() == 0)out.print("<a href='efetivareceita.jsp?idreceita="+lstReceita.get(controle).getId() +"&metodo=1'><img src='img/receita/receita_check.png' /></a>");  %></td><td width="30px"><a href="efetivareceita.jsp?idreceita=<% out.print(lstReceita.get(controle).getId()); %>&metodo=0"><img src="img/conta/conta_r1_c3_s2.png" /></a></td>
            </tr>
            <tr>
                <td><% out.print(lstReceita.get(controle).getData().toString().substring(8, 10) + "/" + lstReceita.get(controle).getData().toString().substring(5, 7) + "/" + lstReceita.get(controle).getData().toString().substring(0, 4)); %></td><td align="center"><% out.print(lstReceita.get(controle).getNum_parcela() + " / " + lstReceita.get(controle).getMax_parcela()); %></td><td colspan="2">&nbsp;</td>

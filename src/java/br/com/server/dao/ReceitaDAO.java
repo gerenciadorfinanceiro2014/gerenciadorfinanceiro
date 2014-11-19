@@ -114,11 +114,16 @@ public class ReceitaDAO {
                 Categoria categoria = receita.getCategoria();
                 Conta conta = receita.getConta();
                 
+                
+                System.out.println("update receita set descricao='"+descricao+"', "
+                        + "data='"+data+"',valor='"+valor+
+                        "',efetuada='"+efetuada+"',categoria="+categoria.getId()+",conta="+conta.getId()+
+                        " where id="+id);
                 //comando do Hibernate para inclusão de linhas SQLs comuns, neste caso o update
                 //temos que inserir a Classe que se refere e executar o comando ao final
                 s.createSQLQuery("update receita set descricao='"+descricao+"', "
                         + "data='"+data+"',valor='"+valor+
-                        "',efetuada='"+efetuada+"',categoria='"+categoria+"',conta='"+conta+
+                        "',efetuada='"+efetuada+"',categoria="+categoria.getId()+",conta="+conta.getId()+
                         " where id="+id).addEntity(Receita.class).executeUpdate();
             } 
             s.getTransaction().commit();//executa a transação
@@ -160,6 +165,10 @@ public class ReceitaDAO {
                 //comando do Hibernate para usar SQLs comuns
                 //neste caso o delete
                 //no final temos que colocar a classe que se refere e o comando para executar a SQL
+                Receita receita = (Receita) lista.get(0);
+                if(receita.isEfetuada() == 1)
+                    atualizarSaldo(receita, 0);
+                
                 s.createSQLQuery("delete from receita "
                         + "where id="+idReceita).addEntity(Receita.class).executeUpdate();
               
