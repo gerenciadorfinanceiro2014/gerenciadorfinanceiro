@@ -103,7 +103,7 @@
    <td colspan="10"><img name="novareceita_r10_c21" src="img/novareceita/novareceita_r10_c21.png" width="229" height="27" border="0" id="novareceita_r10_c21" alt="" /></td>
    <td><img src="img/novareceita/spacer.gif" width="1" height="27" border="0" alt="" /></td>
   </tr>
-  <form name="novareceita" action="salvareditarreceita.jsp" method="post" >
+<form name="novareceita" action="salvareditarreceita.jsp?idReceita=<%out.print(request.getParameter("idReceita"));%>" method="post" >
       <%
      
         ReceitaDAO rDAO = new ReceitaDAO();
@@ -124,7 +124,7 @@
    <td rowspan="3" colspan="2"><img name="novareceita_r11_c22" src="img/novareceita/novareceita_r11_c22.png" width="32" height="36" border="0" id="novareceita_r11_c22" alt="" /></td>
    <td rowspan="3" colspan="6">
    
-   <input type="text" name="txtData" value="<% out.print(receita.getData()); %>" style="width:168px; height:32px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
+       <input type="text" name="txtData" value="<% out.print(receita.getData().toString().substring(8, 10) + "/" + receita.getData().toString().substring(5, 7) + "/" + receita.getData().toString().substring(0, 4)); %>" style="width:168px; height:32px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
    
 	</td>
    <td rowspan="4"><img name="novareceita_r11_c30" src="img/novareceita/novareceita_r11_c30.png" width="13" height="48" border="0" id="novareceita_r11_c30" alt="" /></td>
@@ -200,8 +200,8 @@
         else
             out.print("<input type='checkbox' name='receitafixa' value='true' >Receita Fixa");
     %>
-   <span>&nbsp;&nbsp;&nbsp;<b>Qtd.</b></span> <input type="text" name="txtQtd" value="<% out.print(receita.getMax_parcela() - 1); %>" style="width:61px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
-   <span>&nbsp;&nbsp;&nbsp;<b>Valor</b></span> <input type="text" name="txtValorParcela" value="<% out.print(receita.getValor()); %>" style="width:79px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
+   <span>&nbsp;&nbsp;&nbsp;<b>Qtd.</b></span> <input type="text" name="txtQtd" value="<% if(receita.getMax_parcela() > 1) out.print(receita.getMax_parcela() - 1);%>" style="width:61px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
+   <span>&nbsp;&nbsp;&nbsp;<b>Valor</b></span> <input type="text" name="txtValorParcela" value="<% if(receita.getMax_parcela() > 1) out.print(receita.getValor()); %>" style="width:79px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
    
    </td>
    <td rowspan="3"><img name="novareceita_r22_c30" src="img/novareceita/novareceita_r22_c30.png" width="13" height="55" border="0" id="novareceita_r22_c30" alt="" /></td>
@@ -260,7 +260,7 @@
                 ArrayList<Categoria> listaCategoria = catDAO.Consultar();
                 
                 for(int controle = 0; controle < listaCategoria.size(); controle++){ 
-                    if(listaCategoria.get(controle).getId() == receita.getCategoria().getId()){  %>
+                if(listaCategoria.get(controle).getId().equals(receita.getCategoria().getId())){  %>
                         <option selected="true" value="<% out.print(listaCategoria.get(controle).getId()); %> "> <% out.print(listaCategoria.get(controle).getDescricao()); %> </option>
             <%    }else{ %>
                             <option value="<% out.print(listaCategoria.get(controle).getId()); %> "> <% out.print(listaCategoria.get(controle).getDescricao()); %> </option>
@@ -274,9 +274,9 @@
                 ContaDAO cDAO = new ContaDAO();
                 ArrayList<Conta> lista = cDAO.ConsultarTodos(Integer.parseInt(session.getAttribute("idUsuario").toString()));
                 
-                for(int controle = 0; controle < listaCategoria.size(); controle++){ 
-                    if(lista.get(controle).getId() == receita.getConta().getId()){  %>
-                        <option selected="selected" value="<% out.print(lista.get(controle).getId()); %> "> <% out.print(lista.get(controle).getDescricao()); %> </option>
+                for(int controle = 0; controle < lista.size(); controle++){ 
+            if(lista.get(controle).getId().equals(receita.getConta().getId())){  %>
+                        <option selected="true" value="<% out.print(lista.get(controle).getId()); %> "> <% out.print(lista.get(controle).getDescricao()); %> </option>
             <%    }else{ %>
                             <option value="<% out.print(lista.get(controle).getId()); %> "> <% out.print(lista.get(controle).getDescricao()); %> </option>
             <% } } %>
