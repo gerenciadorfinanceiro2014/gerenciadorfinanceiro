@@ -34,7 +34,7 @@ public class Conexao {
                 //banco remoto
                 //cfg.setProperty("hibernate.connection.url", "jdbc:mysql://192.168.0.191/projetoheitorrpc");
                 cfg.setProperty("hibernate.connection.username", "root");
-                cfg.setProperty("hibernate.connection.password", "root");
+                cfg.setProperty("hibernate.connection.password", "12345");
                 cfg.setProperty("hibernate.hbm2dll.auto", "validate");               
 
                 cfg.addAnnotatedClass(Cartao.class);
@@ -69,7 +69,7 @@ public class Conexao {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             //banco local
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/sistemafinanceiro", "root","root");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/sistemafinanceiro", "root","12345");
             //banco remoto
             //connection = DriverManager.getConnection("jdbc:mysql://192.168.0.191/projetoheitorrpc", "root","1234");
             return connection;            
