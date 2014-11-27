@@ -1,3 +1,17 @@
+<%  
+//verifica se a sessao do usuario  com o ID é valida 
+if (session.getAttribute("idUsuario") == null)  
+{  
+        response.sendRedirect("index.jsp");  
+}  
+%> 
+
+
+
+
+
+
+
 <%@page import="br.com.server.model.Categoria"%>
 <%@page import="br.com.server.dao.CategoriaDAO"%>
 <%@page import="br.com.server.model.Conta"%>
@@ -107,7 +121,7 @@
    <td rowspan="2"><img name="novareceita_r11_c8" src="img/novareceita/novareceita_r11_c8.png" width="32" height="34" border="0" id="novareceita_r11_c8" alt="" /></td>
    <td rowspan="2" colspan="7">
    
-   <input type="text" name="txtValor" style="width:175px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
+       <input type="text" tabindex="1" maxlength="55" name="txtValor" style="width:175px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
    
 	</td>
    <td rowspan="4" colspan="2"><img name="novareceita_r11_c16" src="img/novareceita/novareceita_r11_c16.png" width="22" height="48" border="0" id="novareceita_r11_c16" alt="" /></td>
@@ -115,7 +129,7 @@
    <td rowspan="3" colspan="2"><img name="novareceita_r11_c22" src="img/novareceita/novareceita_r11_c22.png" width="32" height="36" border="0" id="novareceita_r11_c22" alt="" /></td>
    <td rowspan="3" colspan="6">
    
-   <input type="text" name="txtData" style="width:168px; height:32px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
+   <input type="text" name="txtData" tabindex="2" maxlength="55" style="width:168px; height:32px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
    
 	</td>
    <td rowspan="4"><img name="novareceita_r11_c30" src="img/novareceita/novareceita_r11_c30.png" width="13" height="48" border="0" id="novareceita_r11_c30" alt="" /></td>
@@ -149,7 +163,7 @@
    <td rowspan="2" colspan="2"><img name="novareceita_r18_c5" src="img/novareceita/novareceita_r18_c5.png" width="20" height="47" border="0" id="novareceita_r18_c5" alt="" /></td>
    <td colspan="23">
    
-   <input type="text" name="txtTitulo" style="width:505px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9;" />
+   <input type="text" name="txtTitulo" maxlength="55" tabindex="3" style="width:505px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9;" />
    
 	</td>
    <td rowspan="2"><img name="novareceita_r18_c30" src="img/novareceita/novareceita_r18_c30.png" width="13" height="47" border="0" id="novareceita_r18_c30" alt="" /></td>
@@ -172,16 +186,16 @@
    <td rowspan="3"><img name="novareceita_r22_c5" src="img/novareceita/novareceita_r22_c5.png" width="18" height="55" border="0" id="novareceita_r22_c5" alt="" /></td>
    <td colspan="5">
    
-      <input type="checkbox" name="efetuada" value="1" > <b>Efetuada</b>
+      <input type="checkbox" name="efetuada" value="1" tabindex="4" > <b>Efetuada</b>
    
    </td>
    <td rowspan="3" colspan="3"><img name="novareceita_r22_c11" src="img/novareceita/novareceita_r22_c11.png" width="22" height="55" border="0" id="novareceita_r22_c11" alt="" /></td>
    <td rowspan="3"><img name="novareceita_r22_c14" src="img/novareceita/novareceita_r22_c14.png" width="21" height="55" border="0" id="novareceita_r22_c14" alt="" /></td>
    <td colspan="15">
    
-   <input type="checkbox" name="receitafixa" value="true" >Receita Fixa
-   <span>&nbsp;&nbsp;&nbsp;<b>Qtd.</b></span> <input type="text" name="txtQtd" style="width:61px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
-   <span>&nbsp;&nbsp;&nbsp;<b>Valor</b></span> <input type="text" name="txtValorParcela" style="width:79px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
+   <input type="checkbox" name="receitafixa" value="true" tabindex="5" >Receita Fixa
+   <span>&nbsp;&nbsp;&nbsp;<b>Qtd.</b></span> <input type="text" tabindex="6" maxlength="55" name="txtQtd" style="width:61px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
+   <span>&nbsp;&nbsp;&nbsp;<b>Valor</b></span> <input type="text" tabindex="7" maxlength="55" name="txtValorParcela" style="width:79px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
    
    </td>
    <td rowspan="3"><img name="novareceita_r22_c30" src="img/novareceita/novareceita_r22_c30.png" width="13" height="55" border="0" id="novareceita_r22_c30" alt="" /></td>
@@ -228,13 +242,13 @@
    <td><img src="img/novareceita/spacer.gif" width="1" height="9" border="0" alt="" /></td>
   </tr>
   <tr>
-   <td rowspan="3"><input type="image" src="img/novareceita/novareceita_r29_c28.png" name="btnCadastrar" width="40" height="35" border="0" onClick="document.formCadastro.submit()" /></td>
+   <td rowspan="3"><input type="image" tabindex="10" src="img/novareceita/novareceita_r29_c28.png" name="btnCadastrar" width="40" height="35" border="0" onClick="document.formCadastro.submit()" /></td>
    <td><img src="img/novareceita/spacer.gif" width="1" height="5" border="0" alt="" /></td>
   </tr>
   <tr>
    <td rowspan="2" colspan="9">
    
-       <select name="categoriareceita" style="width:215px; height:30px;">
+       <select name="categoriareceita" tabindex="8" style="width:215px; height:30px;">
    	<%
                 CategoriaDAO catDAO = new CategoriaDAO();
                 ArrayList<Categoria> listaCategoria = catDAO.Consultar();
@@ -247,7 +261,7 @@
    </td>
    <td rowspan="2" colspan="6">
    
-   <select name="contareceita" style="width:144px; height:30px;">
+   <select name="contareceita" tabindex="9" style="width:144px; height:30px;">
    	<%
                 ContaDAO cDAO = new ContaDAO();
                 ArrayList<Conta> lista = cDAO.ConsultarTodos(Integer.parseInt(session.getAttribute("idUsuario").toString()));

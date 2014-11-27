@@ -66,9 +66,10 @@
                            despesa.setValor(Double.parseDouble(request.getParameter("txtValorParcela").trim()));
                            despesa.setEfetuada(false);
                        }
-                              
+                            
+                        dDAO.Salvar(despesa); 
                    }
-                   dDAO.Salvar(despesa); 
+                  
                 }
             }else{
                 despesa.setMax_parcela(1); 

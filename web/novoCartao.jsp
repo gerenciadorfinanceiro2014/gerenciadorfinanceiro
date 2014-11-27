@@ -74,10 +74,10 @@ if (session.getAttribute("idUsuario") == null)
   <form name="novocartao" method="post" action="salvarcartao.jsp" >
   
   <tr>
-   <td rowspan="3" colspan="3"><a href="home.jsp" ><img name="novoCartao_r4_c1" src="img/novocartao/novoCartao_r4_c1.png" width="183" height="70" border="0" id="novoCartao_r4_c1" alt="" /></a></td>
+      <td rowspan="3" colspan="3"><a href="home.jsp"  ><img name="novoCartao_r4_c1" src="img/novocartao/novoCartao_r4_c1.png" width="183" height="70" border="0" id="novoCartao_r4_c1" alt="" /></a></td>
    <td>
    
-   <input type="image" src="img/novocartao/novoCartao_r4_c26.png" name="btnCadastrar" width="39" height="33" border="0" onClick="document.formCadastro.submit()" />
+   <input type="image" tabindex="6" src="img/novocartao/novoCartao_r4_c26.png" name="btnCadastrar" width="39" height="33" border="0" onClick="document.formCadastro.submit()" />
 
    </td>
    <td><img name="novoCartao_r4_c27" src="img/novocartao/novoCartao_r4_c27.png" width="15" height="33" border="0" id="novoCartao_r4_c27" alt="" /></td>
@@ -112,12 +112,12 @@ if (session.getAttribute("idUsuario") == null)
   <tr>
    <td rowspan="2" colspan="8">
    
-   <input type="text" name="txtDescricao" style="width:295px; height:25px;"  />
+       <input type="text" tabindex="1" maxlength="55" name="txtDescricao" style="width:295px; height:25px;"  />
    
   </td>
    <td colspan="5">
    
-   <select name="txtTipo" style="width:147px; height:30px;" >
+       <select name="txtTipo" tabindex="2" style="width:147px; height:30px;" >
    
    </select>
    
@@ -156,14 +156,14 @@ if (session.getAttribute("idUsuario") == null)
   <tr>
    <td rowspan="2" colspan="4">
    
-   <select name="txtFechamento" style="width:147px; height:28px;" >
+       <select name="txtFechamento" tabindex="3" style="width:147px; height:28px;" >
    
    </select>
    
    </td>
    <td rowspan="2" colspan="5">
    
-      <select name="txtPagamento" style="width:147px; height:28px;" >
+       <select name="txtPagamento" tabindex="4" style="width:147px; height:28px;" >
    
    </select>
    
@@ -198,7 +198,7 @@ if (session.getAttribute("idUsuario") == null)
   <tr>
    <td colspan="10">
    
-   <input type="text" name="txtLimite" style="width:290px; height:25px;"  />
+       <input type="text" name="txtLimite" maxlength="55" tabindex="5" style="width:290px; height:25px;"  />
    
 	</td>
    <td><img src="img/novocartao/spacer.gif" width="1" height="34" border="0" alt="" /></td>
