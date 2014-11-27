@@ -88,7 +88,7 @@ if (session.getAttribute("idUsuario") == null)
    <td rowspan="3" colspan="3"><a href="home.jsp" ><img name="novoCartao_r4_c1" src="img/novocartao/novoCartao_r4_c1.png" width="183" height="70" border="0" id="novoCartao_r4_c1" alt="" /></a></td>
    <td>
    
-   <input type="image" src="img/novocartao/novoCartao_r4_c26.png" name="btnCadastrar" width="39" height="33" border="0" onClick="document.formCadastro.submit()" />
+       <input type="image" tabindex="6" src="img/novocartao/novoCartao_r4_c26.png" name="btnCadastrar" width="39" height="33" border="0" onClick="document.formCadastro.submit()" />
 
    </td>
    <td><img name="novoCartao_r4_c27" src="img/novocartao/novoCartao_r4_c27.png" width="15" height="33" border="0" id="novoCartao_r4_c27" alt="" /></td>
@@ -128,7 +128,7 @@ if (session.getAttribute("idUsuario") == null)
    <td colspan="5">
    
       
-       <select name="txtTipo" style="width:147px; height:30px;" >
+       <select name="txtTipo" tabindex="2" style="width:147px; height:30px;" >
                
             <%
                 TipoCartaoDAO tcDAO = new TipoCartaoDAO();
@@ -183,7 +183,7 @@ if (session.getAttribute("idUsuario") == null)
   <tr>
    <td rowspan="2" colspan="4">
    
-   <select name="txtFechamento" style="width:147px; height:28px;" >
+       <select name="txtFechamento" tabindex="3" style="width:147px; height:28px;" >
        
         <option  value="<%out.print(String.valueOf(cartao.getDia_fechamento()));%>">
              <%out.print(String.valueOf(cartao.getDia_fechamento()));%>
@@ -200,7 +200,7 @@ if (session.getAttribute("idUsuario") == null)
    </td>
    <td rowspan="2" colspan="5">
    
-    <select name="txtPagamento" style="width:147px; height:28px;" >
+       <select name="txtPagamento" tabindex="4" style="width:147px; height:28px;" >
         
         <option  value="<%out.print(String.valueOf(cartao.getDia_pagamento()));%>">
              <%out.print(String.valueOf(cartao.getDia_pagamento()));%>
@@ -256,7 +256,7 @@ if (session.getAttribute("idUsuario") == null)
 
     </script>
    
-   <input type="text" name="txtLimite" value="<%out.print(cartao.getLimite());%>" onkeypress = "return somenteNumeros(event);" style="width:290px; height:25px;"  />
+       <input type="text" name="txtLimite" tabindex="5" maxlength="55" value="<%out.print(cartao.getLimite());%>" onkeypress = "return somenteNumeros(event);" style="width:290px; height:25px;"  />
    
 	</td>
    <td><img src="img/novocartao/spacer.gif" width="1" height="34" border="0" alt="" /></td>

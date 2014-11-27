@@ -22,13 +22,14 @@
             
             }else{
             
+         
             <%
-        
                 DespesaDAO dDAO = new DespesaDAO();
                 dDAO.Excluir(Integer.parseInt(request.getParameter("idDespesa")));
             %>
             alert('Despesa deletada com sucesso!');
             window.location = "despesa.jsp";
+     
             }
             
         </script>

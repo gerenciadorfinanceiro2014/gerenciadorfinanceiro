@@ -21,7 +21,7 @@
     <body>
    <jsp:useBean id="despesa" scope="page" class="br.com.server.model.Despesa" />
        <jsp:setProperty name="despesa"
-                         property="valortotal"
+                         property="valor"
                          param="txtValor" />
 <jsp:setProperty name="despesa"
                          property="descricao"
@@ -30,7 +30,7 @@
                          property="num_parcela"
                          param="txtQtd" />
         <jsp:setProperty name="despesa"
-                         property="valor"
+                         property="max_parcela"
                          param="txtValorParcela" />
         
        <%

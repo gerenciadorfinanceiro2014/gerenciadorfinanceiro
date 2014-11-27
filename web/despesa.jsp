@@ -1,3 +1,12 @@
+<%  
+//verifica se a sessao do usuario  com o ID é valida 
+if (session.getAttribute("idUsuario") == null)  
+{  
+        response.sendRedirect("index.jsp");  
+}  
+%> 
+
+
 <%@page import="br.com.server.model.Despesa"%>
 <%@page import="br.com.server.dao.DespesaDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -148,7 +157,17 @@
        %>         
        
            <tr>
-               <td><% out.print("<a href='editarDespesa.jsp?idDespesa="+lstDespesa.get(controle).getId()+"'>"+lstDespesa.get(controle).getDescricao()+"</a>"); %></td><td align="center">Parcelas</td><td align="center">R$ <%out.print(lstDespesa.get(controle).getValor()); %></td><td width="10px"><% if(lstDespesa.get(controle).isEfetuada() == false)out.print("<img src='img/conta/conta_r1_c3_s1.png' />");  %></td><td width="30px"><a href="excluirDespesa.jsp?idDespesa=<% out.print(lstDespesa.get(controle).getId()); %>"><img src="img/conta/conta_r1_c3_s2.png" /></a></td>
+               <td><% out.print("<a href='editarDespesa.jsp?idDespesa="+lstDespesa.get(controle).getId()+"'>"+lstDespesa.get(controle).getDescricao()+"</a>"); %>
+               </td><td align="center">Parcelas</td><td align="center">R$ <%out.print(lstDespesa.get(controle).getValor()); %></td><td width="10px">
+                   <% if(lstDespesa.get(controle).isEfetuada() == false)out.print("<img src='img/conta/conta_r1_c3_s1.png' />");  %></td><td width="30px">
+                       <a onclick="excluirDespesa(<% out.print(lstDespesa.get(controle).getId()); %>)"><img src="img/conta/conta_r1_c3_s2.png" /></a></td>
+                   <script>
+                       function excluirDespesa(idDespesa){
+                           if (confirm("Deseja excluir esta despesa?"))
+                                window.location = "excluirDespesa.jsp?idDespesa=" + idDespesa;
+                           return false;
+                       }
+                   </script>
            </tr>
            <tr>
                <td><% out.print(lstDespesa.get(controle).getData().toString().substring(8, 10) + "/" + lstDespesa.get(controle).getData().toString().substring(5, 7) + "/" + lstDespesa.get(controle).getData().toString().substring(0, 4)); %></td><td align="center"><% out.print(lstDespesa.get(controle).getNum_parcela() + " / " + lstDespesa.get(controle).getMax_parcela()); %></td><td colspan="2">&nbsp;</td>

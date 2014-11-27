@@ -1,3 +1,14 @@
+<%  
+//verifica se a sessao do usuario  com o ID é valida 
+if (session.getAttribute("idUsuario") == null)  
+{  
+        response.sendRedirect("index.jsp");  
+}  
+%> 
+
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0014)about:internet -->
@@ -75,13 +86,13 @@
   <tr>
    <td rowspan="2" colspan="2">
    
-   <input type="text" name="txtDescricao" style="width:484px; height:28px;" />   
+       <input type="text" name="txtDescricao" required maxlength="55" tabindex="1" style="width:484px; height:28px;" />   
    
    </td>
    <td rowspan="3"><img name="categoriaDespesa_r10_c9" src="img/categoriadespesa/categoriaDespesa_r10_c9.png" width="48" height="35" border="0" id="categoriaDespesa_r10_c9" alt="" /></td>
    <td rowspan="3">
    
-   <input type="image" src="img/categoriadespesa/categoriaDespesa_r10_c10.png" name="btnCadastrar" width="40" height="35" border="0" onClick="document.formCadastro.submit()" />
+   <input type="image" required maxlength="55" tabindex="2" src="img/categoriadespesa/categoriaDespesa_r10_c10.png" name="btnCadastrar" width="40" height="35" border="0" onClick="document.formCadastro.submit()" />
    
 	</td>
    <td rowspan="3" colspan="3"><img name="categoriaDespesa_r10_c11" src="img/categoriadespesa/categoriaDespesa_r10_c11.png" width="250" height="35" border="0" id="categoriaDespesa_r10_c11" alt="" /></td>

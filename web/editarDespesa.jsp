@@ -1,3 +1,12 @@
+<%  
+//verifica se a sessao do usuario  com o ID é valida 
+if (session.getAttribute("idUsuario") == null)  
+{  
+        response.sendRedirect("index.jsp");  
+}  
+%> 
+
+
 <%@page import="br.com.server.dao.DespesaDAO"%>
 <%@page import="br.com.server.model.Conta"%>
 <%@page import="br.com.server.dao.ContaDAO"%>
@@ -117,7 +126,7 @@
    <td rowspan="2"><img name="novaDespesa_r11_c9" src="img/novadespesa/novaDespesa_r11_c9.png" width="31" height="34" border="0" id="novaDespesa_r11_c9" alt="" /></td>
    <td rowspan="2" colspan="7">
    
-   <input type="text" name="txtValor" value="<% out.print(despesa.getValortotal()); %>" style="width:175px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
+       <input type="text" name="txtValor" required tabindex="1" maxlength="55" value="<% out.print(despesa.getValor()); %>" style="width:175px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
    
    </td>
    <td rowspan="4" colspan="2"><img name="novaDespesa_r11_c17" src="img/novadespesa/novaDespesa_r11_c17.png" width="22" height="48" border="0" id="novaDespesa_r11_c17" alt="" /></td>
@@ -125,7 +134,7 @@
    <td rowspan="3" colspan="2"><img name="novaDespesa_r11_c23" src="img/novadespesa/novaDespesa_r11_c23.png" width="32" height="36" border="0" id="novaDespesa_r11_c23" alt="" /></td>
    <td rowspan="3" colspan="6">
    
-   <input type="text" name="txtData" value="<% out.print(despesa.getData().toString().substring(8, 10) + "/" + despesa.getData().toString().substring(5, 7) + "/" + despesa.getData().toString().substring(0, 4)); %>" style="width:168px; height:32px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
+   <input type="text" name="txtData" tabindex="2" maxlength="55" required value="<% out.print(despesa.getData().toString().substring(8, 10) + "/" + despesa.getData().toString().substring(5, 7) + "/" + despesa.getData().toString().substring(0, 4)); %>" style="width:168px; height:32px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
    
    </td>
    <td rowspan="4"><img name="novaDespesa_r11_c31" src="img/novadespesa/novaDespesa_r11_c31.png" width="13" height="48" border="0" id="novaDespesa_r11_c31" alt="" /></td>
@@ -159,7 +168,7 @@
    <td rowspan="2" colspan="2"><img name="novaDespesa_r18_c5" src="img/novadespesa/novaDespesa_r18_c5.png" width="20" height="47" border="0" id="novaDespesa_r18_c5" alt="" /></td>
    <td colspan="24">
    
-   <input type="text" name="txtTitulo" value="<% out.print(despesa.getDescricao()); %>" style="width:505px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
+   <input type="text" name="txtTitulo" tabindex="3" maxlength="55" required value="<% out.print(despesa.getDescricao()); %>" style="width:505px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
    
    </td>
    <td rowspan="2"><img name="novaDespesa_r18_c31" src="img/novadespesa/novaDespesa_r18_c31.png" width="13" height="47" border="0" id="novaDespesa_r18_c31" alt="" /></td>
@@ -182,16 +191,16 @@
    <td rowspan="3"><img name="novaDespesa_r22_c5" src="img/novadespesa/novaDespesa_r22_c5.png" width="18" height="55" border="0" id="novaDespesa_r22_c5" alt="" /></td>
    <td colspan="7">
    
-   <input type="checkbox" name="efetuada" value="true" > <b>Efetuada</b>
+   <input type="checkbox" name="efetuada" value="true" tabindex="4" > <b>Efetuada</b>
    
    </td>
    <td rowspan="3" colspan="2"><img name="novaDespesa_r22_c13" src="img/novadespesa/novaDespesa_r22_c13.png" width="22" height="55" border="0" id="novaDespesa_r22_c13" alt="" /></td>
    <td rowspan="3"><img name="novaDespesa_r22_c15" src="img/novadespesa/novaDespesa_r22_c15.png" width="21" height="55" border="0" id="novaDespesa_r22_c15" alt="" /></td>
    <td colspan="15">
    
-   <input type="checkbox" name="receitafixa" value="true" >Receita Fixa
-       <span>&nbsp;&nbsp;&nbsp;<b>Qtd.</b></span> <input type="text" name="txtQtd" value="<% out.print(despesa.getNum_parcela()); %>" style="width:61px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
-       <span>&nbsp;&nbsp;&nbsp;<b>Valor</b></span> <input type="text" name="txtValorParcela" value="<% out.print(despesa.getValor()); %>" style="width:79px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
+   <input type="checkbox" name="receitafixa" value="true" tabindex="5" >Receita Fixa
+       <span>&nbsp;&nbsp;&nbsp;<b>Qtd.</b></span> <input type="text" tabindex="6" name="txtQtd" value="<% out.print(despesa.getNum_parcela()); %>" style="width:61px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
+       <span>&nbsp;&nbsp;&nbsp;<b>Valor</b></span> <input type="text" tabindex="7" name="txtValorParcela" value="<% out.print(despesa.getMax_parcela()); %>" style="width:79px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
    
    
    </td>
@@ -241,7 +250,7 @@
   <tr>
    <td rowspan="3">
    
-   <input type="image" src="img/novadespesa/novaDespesa_r29_c29.png" name="btnCadastrar" width="40" height="35" border="0" onClick="document.formCadastro.submit()" />
+   <input type="image" tabindex="10" src="img/novadespesa/novaDespesa_r29_c29.png" name="btnCadastrar" width="40" height="35" border="0" onClick="document.formCadastro.submit()" />
 	
     </td>
    <td><img src="img/novadespesa/spacer.gif" width="1" height="5" border="0" alt="" /></td>
@@ -249,7 +258,7 @@
   <tr>
    <td rowspan="2" colspan="10">
    
-   <select name="categoriadespesa" style="width:215px; height:30px;">
+   <select name="categoriadespesa" tabindex="8" style="width:215px; height:30px;">
    	
 <%
                 CategoriaDAO catDAO = new CategoriaDAO();
@@ -263,7 +272,7 @@
    </td>
    <td rowspan="2" colspan="6">
    
-   <select name="contadespesa" style="width:144px; height:30px;">
+   <select name="contadespesa" tabindex="9" style="width:144px; height:30px;">
    	
        <%
                 ContaDAO cDAO = new ContaDAO();

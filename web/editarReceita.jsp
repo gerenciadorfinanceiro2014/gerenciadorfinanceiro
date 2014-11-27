@@ -1,3 +1,13 @@
+<%  
+//verifica se a sessao do usuario  com o ID é valida 
+if (session.getAttribute("idUsuario") == null)  
+{  
+        response.sendRedirect("index.jsp");  
+}  
+%> 
+
+
+
 <%@page import="br.com.server.model.Receita"%>
 <%@page import="br.com.server.dao.ReceitaDAO"%>
 <%@page import="br.com.server.model.Categoria"%>
@@ -116,7 +126,7 @@
    <td rowspan="2"><img name="novareceita_r11_c8" src="img/novareceita/novareceita_r11_c8.png" width="32" height="34" border="0" id="novareceita_r11_c8" alt="" /></td>
    <td rowspan="2" colspan="7">
    
-       <input type="text" name="txtValor" value="<% out.print(receita.getValor()); %>" style="width:175px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
+       <input type="text" name="txtValor" maxlength="55" tabindex="1" value="<% out.print(receita.getValor()); %>" style="width:175px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
    
 	</td>
    <td rowspan="4" colspan="2"><img name="novareceita_r11_c16" src="img/novareceita/novareceita_r11_c16.png" width="22" height="48" border="0" id="novareceita_r11_c16" alt="" /></td>
@@ -124,7 +134,7 @@
    <td rowspan="3" colspan="2"><img name="novareceita_r11_c22" src="img/novareceita/novareceita_r11_c22.png" width="32" height="36" border="0" id="novareceita_r11_c22" alt="" /></td>
    <td rowspan="3" colspan="6">
    
-       <input type="text" name="txtData" value="<% out.print(receita.getData().toString().substring(8, 10) + "/" + receita.getData().toString().substring(5, 7) + "/" + receita.getData().toString().substring(0, 4)); %>" style="width:168px; height:32px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
+       <input type="text" name="txtData" maxlength="55" tabindex="2" value="<% out.print(receita.getData().toString().substring(8, 10) + "/" + receita.getData().toString().substring(5, 7) + "/" + receita.getData().toString().substring(0, 4)); %>" style="width:168px; height:32px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
    
 	</td>
    <td rowspan="4"><img name="novareceita_r11_c30" src="img/novareceita/novareceita_r11_c30.png" width="13" height="48" border="0" id="novareceita_r11_c30" alt="" /></td>
@@ -158,7 +168,7 @@
    <td rowspan="2" colspan="2"><img name="novareceita_r18_c5" src="img/novareceita/novareceita_r18_c5.png" width="20" height="47" border="0" id="novareceita_r18_c5" alt="" /></td>
    <td colspan="23">
    
-   <input type="text" name="txtTitulo" value="<% out.print(receita.getDescricao()); %>" style="width:505px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9;" />
+   <input type="text" name="txtTitulo" maxlength="55" tabindex="3" value="<% out.print(receita.getDescricao()); %>" style="width:505px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9;" />
    
 	</td>
    <td rowspan="2"><img name="novareceita_r18_c30" src="img/novareceita/novareceita_r18_c30.png" width="13" height="47" border="0" id="novareceita_r18_c30" alt="" /></td>
@@ -183,9 +193,9 @@
    
        <%
             if(receita.isEfetuada() == 1)
-                out.print("<input type='checkbox' name='efetuada' value='1' checked='checked' > <b>Efetuada</b>");
+                out.print("<input type='checkbox' name='efetuada' maxlength='55' tabindex='4' value='1' checked='checked' > <b>Efetuada</b>");
             else
-                out.print("<input type='checkbox' name='efetuada' value='1'  > <b>Efetuada</b>");
+                out.print("<input type='checkbox' name='efetuada' maxlength='55' tabindex='4' value='1'  > <b>Efetuada</b>");
          %>
       
    
@@ -248,13 +258,13 @@
    <td><img src="img/novareceita/spacer.gif" width="1" height="9" border="0" alt="" /></td>
   </tr>
   <tr>
-   <td rowspan="3"><input type="image" src="img/novareceita/novareceita_r29_c28.png" name="btnCadastrar" width="40" height="35" border="0" onClick="document.formCadastro.submit()" /></td>
+   <td rowspan="3"><input type="image" tabindex="7" src="img/novareceita/novareceita_r29_c28.png" name="btnCadastrar" width="40" height="35" border="0" onClick="document.formCadastro.submit()" /></td>
    <td><img src="img/novareceita/spacer.gif" width="1" height="5" border="0" alt="" /></td>
   </tr>
   <tr>
    <td rowspan="2" colspan="9">
    
-       <select name="categoriareceita" style="width:215px; height:30px;">
+       <select name="categoriareceita" tabindex="5" style="width:215px; height:30px;">
    	<%
                 CategoriaDAO catDAO = new CategoriaDAO();
                 ArrayList<Categoria> listaCategoria = catDAO.Consultar();
@@ -269,7 +279,7 @@
    </td>
    <td rowspan="2" colspan="6">
    
-   <select name="contareceita" style="width:144px; height:30px;">
+   <select name="contareceita" tabindex="6" style="width:144px; height:30px;">
    	<%
                 ContaDAO cDAO = new ContaDAO();
                 ArrayList<Conta> lista = cDAO.ConsultarTodos(Integer.parseInt(session.getAttribute("idUsuario").toString()));

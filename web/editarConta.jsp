@@ -119,7 +119,7 @@ if (session.getAttribute("idUsuario") == null)
             } 
        
        </script>
-       <input type="text" name="txtSaldo" value="<% out.print(conta.getValor_inicial()); %>" onkeypress = "return somenteNumeros(event);" style="width:175px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;"/>
+       <input type="text" tabindex="2" maxlength="55" name="txtSaldo" value="<% out.print(conta.getValor_inicial()); %>" onkeypress = "return somenteNumeros(event);" style="width:175px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;"/>
     
     </td>
    <td rowspan="12"><img name="novaconta_r9_c16" src="img/novaconta/novaconta_r9_c16.png" width="21" height="456" border="0" id="novaconta_r9_c16" alt="" /></td>
@@ -130,13 +130,13 @@ if (session.getAttribute("idUsuario") == null)
    <td rowspan="3"><img name="novaconta_r10_c8" src="img/novaconta/novaconta_r10_c8.png" width="35" height="35" border="0" id="novaconta_r10_c8" alt="" /></td>
    <td rowspan="3" colspan="2">
    
-       <input type="text" name="txtTitulo" value="<% out.print(conta.getDescricao()); %>" readonly="true" style="width:195px; height:31px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;"/>
+       <input type="text" name="txtTitulo" tabindex="1" maxlength="55" value="<% out.print(conta.getDescricao()); %>" readonly="true" style="width:195px; height:31px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;"/>
    
    </td>
    <td rowspan="11"><img name="novaconta_r10_c17" src="img/novaconta/novaconta_r10_c17.png" width="90" height="455" border="0" id="novaconta_r10_c17" alt="" /></td>
    <td rowspan="4">
    
-   <input type="image" name="btnSalvar" src="img/novaconta/novaconta_r10_c18.png" width="40" height="36" onClick="document.formCadastro.submit()" /></td>
+       <input type="image" tabindex="3" name="btnSalvar" src="img/novaconta/novaconta_r10_c18.png" width="40" height="36" onClick="document.formCadastro.submit()" /></td>
    <td rowspan="11" colspan="3"><img name="novaconta_r10_c19" src="img/novaconta/novaconta_r10_c19.png" width="130" height="455" border="0" id="novaconta_r10_c19" alt="" /></td>
    <td><img src="img/novaconta/spacer.gif" width="1" height="31" border="0" alt="" /></td>
   </tr>

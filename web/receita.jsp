@@ -1,3 +1,12 @@
+<%  
+//verifica se a sessao do usuario  com o ID é valida 
+if (session.getAttribute("idUsuario") == null)  
+{  
+        response.sendRedirect("index.jsp");  
+}  
+%> 
+
+
 <%@page import="br.com.server.model.Receita"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="br.com.server.dao.ReceitaDAO"%>

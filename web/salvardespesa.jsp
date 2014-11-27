@@ -26,7 +26,7 @@
                          property="descricao"
                          param="txtTitulo" />
         <jsp:setProperty name="despesa"
-                         property="valortotal"
+                         property="valor"
                          param="txtValor" />
         
         <%
