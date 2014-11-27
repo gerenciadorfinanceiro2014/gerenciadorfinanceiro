@@ -3,6 +3,7 @@
 package br.com.server.dao;
 
 import br.com.server.Conexao;
+import br.com.server.model.Cartao;
 import br.com.server.model.Categoria;
 import br.com.server.model.DespesaCartao;
 import java.util.Date;
@@ -119,6 +120,31 @@ public class DespesaCartaoDAO {
                         + "where id="+idDespesaCartao).addEntity(DespesaCartao.class).executeUpdate();
               
             } 
+            s.getTransaction().commit();//executa a transação
+            s.close();//fecha a conexão
+
+        } catch (Exception erro) {
+            erro.printStackTrace();
+        }
+    }
+    
+    public void AtualizaLimite(Cartao cartao, double valor) {
+
+        try {
+            Session s = Conexao.openSession(Conexao.openConnection());
+            s.beginTransaction();
+            
+                
+                //apenas para facilitar o entendimento criamos as variáveis
+                //para receber os dados que vieram através do objeto
+                int idCartao = cartao.getId();
+                Double valor_atual = cartao.getLimite() - valor;
+                
+                //comando do Hibernate para inclusão de linhas SQLs comuns, neste caso o update
+                //temos que inserir a Classe que se refere e executar o comando ao final
+                s.createSQLQuery("update cartao set limite='"+valor_atual+
+                        "' where id="+idCartao).addEntity(Cartao.class).executeUpdate();
+                
             s.getTransaction().commit();//executa a transação
             s.close();//fecha a conexão
 

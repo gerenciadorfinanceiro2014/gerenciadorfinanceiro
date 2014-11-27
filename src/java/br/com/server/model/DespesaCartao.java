@@ -32,6 +32,12 @@ public class DespesaCartao {
     @Column(name = "descricao")
     private String descricao;
     
+    @Column(name = "parcela")
+    private int parcela;
+    
+    @Column(name = "parcmax")
+    private int parcmax;
+        
     @ManyToOne
     @JoinColumn(name = "categoria")
     private Categoria categoria;
@@ -97,6 +103,34 @@ public class DespesaCartao {
     }
 
     /**
+     * @return the parcela
+     */
+    public int getParcela() {
+        return parcela;
+    }
+
+    /**
+     * @param parcela the parcela to set
+     */
+    public void setParcela(int parcela) {
+        this.parcela = parcela;
+    }
+
+    /**
+     * @return the parcmax
+     */
+    public int getParcmax() {
+        return parcmax;
+    }
+
+    /**
+     * @param parcmax the parcmax to set
+     */
+    public void setParcmax(int parcmax) {
+        this.parcmax = parcmax;
+    }
+
+    /**
      * @return the categoria
      */
     public Categoria getCategoria() {
@@ -124,5 +158,6 @@ public class DespesaCartao {
         this.cartao = cartao;
     }
 
+   
     
 }
