@@ -60,7 +60,7 @@
                     Integer ano = null;
                     if(request.getParameter("m") == null && request.getParameter("a") == null){
                         Date date = new Date();
-                        mes = date.getMonth();
+                        mes = date.getMonth() + 1;
                         ano = 1900 + date.getYear();
                     }else{
                         mes = Integer.parseInt(request.getParameter("m"));

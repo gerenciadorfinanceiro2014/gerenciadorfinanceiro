@@ -108,17 +108,16 @@ public class ReceitaDAO {
                 //para receber os dados que vieram através do objeto
                 int id = receita.getId();
                 String descricao = receita.getDescricao();
-                String data = String.valueOf(receita.getData());
+                String data = String.valueOf(receita.getData().getYear() + 1900) + "-" + String.valueOf(receita.getData().getMonth() + 1) + "-" + String.valueOf(receita.getData().getDay()) +
+                                " " + String.valueOf(receita.getData().getHours()) + ":" + String.valueOf(receita.getData().getMinutes()) + ":" + String.valueOf(receita.getData().getSeconds());
                 Double valor = receita.getValor();
                 int efetuada = receita.isEfetuada();
                 Categoria categoria = receita.getCategoria();
                 Conta conta = receita.getConta();
                 
+                if((Consultar(id).isEfetuada() == 1 && efetuada == 0) || (Consultar(id).isEfetuada() == 0 && efetuada == 1))
+                    atualizarSaldo(receita, efetuada);
                 
-                System.out.println("update receita set descricao='"+descricao+"', "
-                        + "data='"+data+"',valor='"+valor+
-                        "',efetuada='"+efetuada+"',categoria="+categoria.getId()+",conta="+conta.getId()+
-                        " where id="+id);
                 //comando do Hibernate para inclusão de linhas SQLs comuns, neste caso o update
                 //temos que inserir a Classe que se refere e executar o comando ao final
                 s.createSQLQuery("update receita set descricao='"+descricao+"', "

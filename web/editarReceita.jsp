@@ -170,7 +170,7 @@
   </tr>
   <tr>
    <td rowspan="2" colspan="9"><img name="novareceita_r20_c5" src="img/novareceita/novareceita_r20_c5.png" width="160" height="42" border="0" id="novareceita_r20_c5" alt="" /></td>
-   <td rowspan="2" colspan="17"><img name="novareceita_r20_c14" src="img/novareceita/novareceita_r20_c14.png" width="382" height="42" border="0" id="novareceita_r20_c14" alt="" /></td>
+   <td rowspan="2" colspan="17"><!--<img name="novareceita_r20_c14" src="img/novareceita/novareceita_r20_c14.png" width="382" height="42" border="0" id="novareceita_r20_c14" alt="" />--></td>
    <td><img src="img/novareceita/spacer.gif" width="1" height="22" border="0" alt="" /></td>
   </tr>
   <tr>
@@ -191,25 +191,25 @@
    
    </td>
    <td rowspan="3" colspan="3"><img name="novareceita_r22_c11" src="img/novareceita/novareceita_r22_c11.png" width="22" height="55" border="0" id="novareceita_r22_c11" alt="" /></td>
-   <td rowspan="3"><img name="novareceita_r22_c14" src="img/novareceita/novareceita_r22_c14.png" width="21" height="55" border="0" id="novareceita_r22_c14" alt="" /></td>
+   <td rowspan="3"><!--<img name="novareceita_r22_c14" src="img/novareceita/novareceita_r22_c14.png" width="21" height="55" border="0" id="novareceita_r22_c14" alt="" />--></td>
    <td colspan="15">
-   
    <%
-        if(receita.getMax_parcela() > 1)
+        /*if(receita.getMax_parcela() > 1)
             out.print("<input type='checkbox' name='receitafixa' value='true' checked='checked' >Receita Fixa");
         else
-            out.print("<input type='checkbox' name='receitafixa' value='true' >Receita Fixa");
+            out.print("<input type='checkbox' name='receitafixa' value='true' >Receita Fixa");*/
     %>
-   <span>&nbsp;&nbsp;&nbsp;<b>Qtd.</b></span> <input type="text" name="txtQtd" value="<% if(receita.getMax_parcela() > 1) out.print(receita.getMax_parcela() - 1);%>" style="width:61px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
-   <span>&nbsp;&nbsp;&nbsp;<b>Valor</b></span> <input type="text" name="txtValorParcela" value="<% if(receita.getMax_parcela() > 1) out.print(receita.getValor()); %>" style="width:79px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" />
+   <!-- <span>&nbsp;&nbsp;&nbsp;<b>Qtd.</b></span> <input type="text" name="txtQtd" value="<% if(receita.getMax_parcela() > 1) out.print(receita.getMax_parcela() - 1);%>" style="width:61px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" /> 
+   <span>&nbsp;&nbsp;&nbsp;<b>Valor</b></span> <input type="text" name="txtValorParcela" value="<% if(receita.getMax_parcela() > 1) out.print(receita.getValor()); %>" style="width:79px; height:27px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; border-left:1px solid #7F9DB9; text-align:right;" /> -->
+ 
    
    </td>
-   <td rowspan="3"><img name="novareceita_r22_c30" src="img/novareceita/novareceita_r22_c30.png" width="13" height="55" border="0" id="novareceita_r22_c30" alt="" /></td>
+   <td rowspan="3"><!--<img name="novareceita_r22_c30" src="img/novareceita/novareceita_r22_c30.png" width="13" height="55" border="0" id="novareceita_r22_c30" alt="" />--></td>
    <td><img src="img/novareceita/spacer.gif" width="1" height="34" border="0" alt="" /></td>
   </tr>
   <tr>
    <td rowspan="2" colspan="5"><img name="novareceita_r23_c6" src="img/novareceita/novareceita_r23_c6.png" width="120" height="21" border="0" id="novareceita_r23_c6" alt="" /></td>
-   <td rowspan="2" colspan="15"><img name="novareceita_r23_c15" src="img/novareceita/novareceita_r23_c15.png" width="348" height="21" border="0" id="novareceita_r23_c15" alt="" /></td>
+   <td rowspan="2" colspan="15"><!--<img name="novareceita_r23_c15" src="img/novareceita/novareceita_r23_c15.png" width="348" height="21" border="0" id="novareceita_r23_c15" alt="" />--></td>
    <td><img src="img/novareceita/spacer.gif" width="1" height="8" border="0" alt="" /></td>
   </tr>
   <tr>
