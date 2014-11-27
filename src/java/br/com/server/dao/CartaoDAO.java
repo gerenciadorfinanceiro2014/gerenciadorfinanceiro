@@ -1,10 +1,9 @@
 
-
 package br.com.server.dao;
 
 import br.com.server.Conexao;
 import br.com.server.model.Cartao;
-import br.com.server.model.TipoCartao;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -56,6 +55,28 @@ public class CartaoDAO {
         }
         return cartao;
     }
+    
+    public ArrayList<Cartao> ConsultarTodos() {
+
+        ArrayList<Cartao> lista = new ArrayList<Cartao>();
+        try {
+            //inicia a conexão com o banco
+            Session s = Conexao.openSession(Conexao.openConnection());
+            s.beginTransaction();
+            
+            //cria o Criteria na classe
+            Criteria c = s.createCriteria(Cartao.class);
+         
+            lista = (ArrayList<Cartao>)c.list();// cria a lista com os resultados
+
+            s.getTransaction().commit();//executa a transação
+            s.close();//fecha a conexão
+
+        } catch (Exception erro) {
+           erro.printStackTrace();
+        }
+        return lista;
+    }
 
     public void Editar(Cartao cartao) {
 
@@ -63,13 +84,15 @@ public class CartaoDAO {
             Session s = Conexao.openSession(Conexao.openConnection());
             s.beginTransaction();
             
-            //cria o Criteria
+            s.update(cartao);
+            
+            /*//cria o Criteria
             Criteria c = s.createCriteria(Cartao.class);
             
             //verifica se realmente existe o registro com o codigo que veio no objeto
             c.add(Restrictions.eq("id", cartao.getId()));
             
-            if (c.uniqueResult() != null) {//se o Criteria encontrar um regitro apenas ele entra no if
+            if (c.uniqueResult() != null) {//se o Criteria encontrar um regitro apenas ele entra no if             
                 
                 //apenas para facilitar o entendimento criamos as variáveis
                 //para receber os dados que vieram através do objeto
@@ -82,11 +105,10 @@ public class CartaoDAO {
                 
                 //comando do Hibernate para inclusão de linhas SQLs comuns, neste caso o update
                 //temos que inserir a Classe que se refere e executar o comando ao final
-                s.createSQLQuery("update cartao set descricao='"+descricao+"', "
-                        + "dia_fechamento='"+dia_fechamento+"',dia_pagamento='"+dia_pagamento+
-                        "',limite='"+limite+"',tipocartao='"+tipocartao+
-                        " where id="+id).addEntity(Cartao.class).executeUpdate();
-            } 
+                s.createSQLQuery("update sistemafinanceiro.cartao set descricao='"+descricao+"', dia_fechamento="+dia_fechamento+","
+                        + " dia_pagamento="+dia_pagamento+", limite="+limite+", tipocartao="+tipocartao+" "
+                        + "where id="+id+";").addEntity(Cartao.class).executeUpdate();
+            } */
             s.getTransaction().commit();//executa a transação
             s.close();//fecha a conexão
 

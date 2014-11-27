@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="br.com.server.model.TipoCartao"%>
+<%@page import="br.com.server.dao.TipoCartaoDAO"%>
 <%  
 //verifica se a sessao do usuario  com o ID é valida 
 if (session.getAttribute("idUsuario") == null)  
@@ -15,7 +18,7 @@ if (session.getAttribute("idUsuario") == null)
 <!-- saved from url=(0014)about:internet -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>novoCartao.png</title>
+<title>.: Sistema Gerenciador Financeiro :.</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">td img {display: block;}</style>
 <!--Fireworks CS5 Dreamweaver CS5 target.  Created Tue Oct 28 16:27:11 GMT-0200 2014-->
@@ -71,13 +74,13 @@ if (session.getAttribute("idUsuario") == null)
    <td><img src="img/novocartao/spacer.gif" width="1" height="15" border="0" alt="" /></td>
   </tr>
   
-  <form name="novocartao" method="post" action="salvarcartao.jsp" >
+  <form name="novocartao" method="post" action="salvarCartao.jsp">
   
   <tr>
-      <td rowspan="3" colspan="3"><a href="home.jsp"  ><img name="novoCartao_r4_c1" src="img/novocartao/novoCartao_r4_c1.png" width="183" height="70" border="0" id="novoCartao_r4_c1" alt="" /></a></td>
+   <td rowspan="3" colspan="3"><a href="home.jsp" ><img name="novoCartao_r4_c1" src="img/novocartao/novoCartao_r4_c1.png" width="183" height="70" border="0" id="novoCartao_r4_c1" alt="" /></a></td>
    <td>
    
-   <input type="image" tabindex="6" src="img/novocartao/novoCartao_r4_c26.png" name="btnCadastrar" width="39" height="33" border="0" onClick="document.formCadastro.submit()" />
+   <input type="image" src="img/novocartao/novoCartao_r4_c26.png" name="btnCadastrar" width="39" height="33" border="0" onClick="document.formCadastro.submit()" />
 
    </td>
    <td><img name="novoCartao_r4_c27" src="img/novocartao/novoCartao_r4_c27.png" width="15" height="33" border="0" id="novoCartao_r4_c27" alt="" /></td>
@@ -112,13 +115,23 @@ if (session.getAttribute("idUsuario") == null)
   <tr>
    <td rowspan="2" colspan="8">
    
-       <input type="text" tabindex="1" maxlength="55" name="txtDescricao" style="width:295px; height:25px;"  />
+       <input type="text" required="required" maxlength="55" tabindex="1" name="txtDescricao" style="width:295px; height:25px; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:left;"/>
    
   </td>
    <td colspan="5">
    
-       <select name="txtTipo" tabindex="2" style="width:147px; height:30px;" >
-   
+   <select name="txtTipo" style="width:147px; height:30px;" >
+       
+            <%
+                TipoCartaoDAO tcDAO = new TipoCartaoDAO();
+                ArrayList<TipoCartao> lista = tcDAO.ConsultarTodos();
+                
+                for(int controle = 0; controle < lista.size(); controle++){ %>
+                   <option value="<% out.print(lista.get(controle).getId()); %> "> 
+                       <% out.print(lista.get(controle).getDescricao()); %> 
+                   </option>
+            <%    }
+            %>
    </select>
    
 	</td>
@@ -156,16 +169,26 @@ if (session.getAttribute("idUsuario") == null)
   <tr>
    <td rowspan="2" colspan="4">
    
-       <select name="txtFechamento" tabindex="3" style="width:147px; height:28px;" >
-   
+   <select name="txtFechamento" style="width:147px; height:28px;" >
+       
+       <%for(int controle = 1; controle <= 31; controle++){ %>
+                   <option value="<%out.print(controle);%>"> 
+                       <%out.print(controle);%>
+                   </option>
+        <%}%>
+            
    </select>
    
    </td>
    <td rowspan="2" colspan="5">
    
-       <select name="txtPagamento" tabindex="4" style="width:147px; height:28px;" >
-   
-   </select>
+    <select name="txtPagamento" style="width:147px; height:28px;" >
+          <%for(int controle = 1; controle <= 31; controle++){ %>
+                   <option value="<%out.print(controle);%>"> 
+                       <%out.print(controle);%>
+                   </option>
+        <%}%>
+    </select>
    
    </td>
    <td><img src="img/novocartao/spacer.gif" width="1" height="6" border="0" alt="" /></td>
@@ -197,8 +220,20 @@ if (session.getAttribute("idUsuario") == null)
   </tr>
   <tr>
    <td colspan="10">
+       
+   <script>
+        function somenteNumeros(e){    
+            var tecla=(window.event)?event.keyCode:e.which;
+            if((tecla>45 && tecla<58)) return true;
+            else{
+                if (tecla==8 || tecla==0) return true;
+                else return false;
+            } 
+        } 
+
+    </script>
    
-       <input type="text" name="txtLimite" maxlength="55" tabindex="5" style="width:290px; height:25px;"  />
+   <input type="text" name="txtLimite" onkeypress = "return somenteNumeros(event);" style="width:290px; height:25px;"  />
    
 	</td>
    <td><img src="img/novocartao/spacer.gif" width="1" height="34" border="0" alt="" /></td>

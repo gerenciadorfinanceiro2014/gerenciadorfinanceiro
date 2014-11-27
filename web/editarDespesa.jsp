@@ -125,7 +125,7 @@
    <td rowspan="3" colspan="2"><img name="novaDespesa_r11_c23" src="img/novadespesa/novaDespesa_r11_c23.png" width="32" height="36" border="0" id="novaDespesa_r11_c23" alt="" /></td>
    <td rowspan="3" colspan="6">
    
-   <input type="text" name="txtData" value="<% out.print(despesa.getData()); %>" style="width:168px; height:32px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
+   <input type="text" name="txtData" value="<% out.print(despesa.getData().toString().substring(8, 10) + "/" + despesa.getData().toString().substring(5, 7) + "/" + despesa.getData().toString().substring(0, 4)); %>" style="width:168px; height:32px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
    
    </td>
    <td rowspan="4"><img name="novaDespesa_r11_c31" src="img/novadespesa/novaDespesa_r11_c31.png" width="13" height="48" border="0" id="novaDespesa_r11_c31" alt="" /></td>

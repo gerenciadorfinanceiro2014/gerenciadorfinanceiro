@@ -3,6 +3,8 @@ package br.com.server.dao;
 
 import br.com.server.Conexao;
 import br.com.server.model.TipoCartao;
+import br.com.server.model.Usuario;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -53,6 +55,28 @@ public class TipoCartaoDAO {
            erro.printStackTrace();
         }
         return tipoCartao;
+    }
+    
+    public ArrayList<TipoCartao> ConsultarTodos() {
+
+        ArrayList<TipoCartao> lista = new ArrayList<TipoCartao>();
+        try {
+            //inicia a conexão com o banco
+            Session s = Conexao.openSession(Conexao.openConnection());
+            s.beginTransaction();
+            
+            //cria o Criteria na classe
+            Criteria c = s.createCriteria(TipoCartao.class);
+
+            lista = (ArrayList<TipoCartao>)c.list();// cria a lista com os resultados
+
+            s.getTransaction().commit();//executa a transação
+            s.close();//fecha a conexão
+
+        } catch (Exception erro) {
+           erro.printStackTrace();
+        }
+        return lista;
     }
 
     public void Editar(TipoCartao tipoCartao) {

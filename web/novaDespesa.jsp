@@ -255,10 +255,10 @@ if (session.getAttribute("idUsuario") == null)
    	
 <%
                 CategoriaDAO catDAO = new CategoriaDAO();
-                ArrayList<Categoria> listaCategoria = catDAO.Consultar();
+                ArrayList<Categoria> listaCategoriaD = catDAO.Consultar();
                 
-                for(int controle = 0; controle < listaCategoria.size(); controle++){ %>
-                   <option value="<% out.print(listaCategoria.get(controle).getId()); %> "> <% out.print(listaCategoria.get(controle).getDescricao()); %> </option>
+                for(int controle = 0; controle < listaCategoriaD.size(); controle++){ %>
+                   <option value="<% out.print(listaCategoriaD.get(controle).getId()); %> "> <% out.print(listaCategoriaD.get(controle).getDescricao()); %> </option>
             <%    }
             %>
    
@@ -269,10 +269,10 @@ if (session.getAttribute("idUsuario") == null)
    	
       <%
                 ContaDAO cDAO = new ContaDAO();
-                ArrayList<Conta> lista = cDAO.ConsultarTodos(Integer.parseInt(session.getAttribute("idUsuario").toString()));
+                ArrayList<Conta> listaD = cDAO.ConsultarTodos(Integer.parseInt(session.getAttribute("idUsuario").toString()));
                 
-                for(int controle = 0; controle < lista.size(); controle++){ %>
-                   <option value="<% out.print(lista.get(controle).getId()); %> "> <% out.print(lista.get(controle).getDescricao()); %> </option>
+                for(int controle = 0; controle < listaD.size(); controle++){ %>
+                   <option value="<% out.print(listaD.get(controle).getId()); %> "> <% out.print(listaD.get(controle).getDescricao()); %> </option>
             <%    }
             %>
  

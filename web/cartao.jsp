@@ -1,3 +1,7 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="br.com.server.model.Cartao"%>
+<%@page import="br.com.server.dao.CartaoDAO"%>
 <%  
 //verifica se a sessao do usuario  com o ID é valida 
 if (session.getAttribute("idUsuario") == null)  
@@ -79,15 +83,58 @@ if (session.getAttribute("idUsuario") == null)
    <td rowspan="2"><img name="cartao_r8_c7" src="img/cartao/cartao_r8_c7.png" width="20" height="55" border="0" id="cartao_r8_c7" alt="" /></td>
    <td colspan="4">
    
-   <div style="width:448px; height:30px; border:1px solid; border-radius:12px; background-color:#FFF">
-        	<table>
+   <div style="width:448px; height:30px; border:1px solid; border-radius:12px; background-color:#FFF; vertical-align:top;">
+   
+       
+               <%
+                    Integer mes = null;
+                    Integer ano = null;
+                    if(request.getParameter("m") == null && request.getParameter("a") == null){
+                        Date date = new Date();
+                        mes = date.getMonth();
+                        ano = 1900 + date.getYear();
+                    }else{
+                        mes = Integer.parseInt(request.getParameter("m"));
+                        ano = Integer.parseInt(request.getParameter("a"));
+                    }
+
+               %>
+               
+               <script language="JavaScript">
+                   function anterior(mes, ano){
+                       mes--;
+                       if(mes<1){
+                           mes = 12;
+                           ano--;
+                       }
+                       window.location="cartao.jsp?m=" + mes + "&a=" + ano;
+                   }
+                   function proximo(mes, ano){
+                       mes++;
+                       if(mes>12){
+                           mes = 1;
+                           ano++;
+                       }
+                       window.location="cartao.jsp?m=" + mes + "&a=" + ano;
+                   }               
+               </script>
+               
+               
+                    
+               <table style="height:30px;">
             	<tr>
-                	<td></td>
-                    <td></td>
-                    <td>
+                    <td><a href="#"><img  src="img/cartao/cartao_r1_c1_s1.png" style="height:26px;" onclick="<% out.print("anterior(" + mes + "," + ano + ");"); %>" /></a></td>
+                    <td style="width: 335px; text-align:center;"> 
+                    
+                        <%
+                           out.print(mes + " / " + ano);
+                            
+                        %>
+                    </td>
+                        <td><a href="#"><img  src="img/cartao/cartao_r1_c6_s1.png" style="height:26px;" onclick="<% out.print("proximo(" + mes + "," + ano + ");"); %>" /></a></td>
                 </tr>
-            </table>
-        </div>
+            </table>       
+   </div>
    
    <td rowspan="2"><img name="cartao_r8_c12" src="img/cartao/cartao_r8_c12.png" width="19" height="55" border="0" id="cartao_r8_c12" alt="" /></td>
    <td><img src="img/cartao/spacer.gif" width="1" height="33" border="0" alt="" /></td>
@@ -101,10 +148,35 @@ if (session.getAttribute("idUsuario") == null)
    
    
    <div style="width:85%; border:1px solid; border-radius:5px; background-color:#FFF">
-   
-   <p></p>
-      <p></p>
-         <p></p>
+        <table border="0" width="100%">
+       <%
+            CartaoDAO cDAO = new CartaoDAO();
+            ArrayList<Cartao> lstCartao = cDAO.ConsultarTodos();
+            
+            for(int controle = 0; controle < lstCartao.size(); controle++){
+       %>         
+       
+           <tr>
+               <td><b><% out.print(lstCartao.get(controle).getDescricao()); %></td>
+               <td>Fatura Aberta: </td>
+               <td width="30px"><a href="editarCartao.jsp?idCartao=<% out.print(lstCartao.get(controle).getId()); %>"><img src="img/cartao/cartao_r1_c3_s1.png" /></td>
+               <td width="30px"><a href="excluirCartao.jsp?idCartao=<% out.print(lstCartao.get(controle).getId()); %>"><img src="img/cartao/cartao_r1_c3_s2.png" /></a></td>
+           </tr>
+           <tr>
+               <td>Limite: R$ <% out.print(lstCartao.get(controle).getLimite()); %></td>
+               <td>Dia Fechamento: <%out.print(lstCartao.get(controle).getDia_fechamento());%> | 
+                   Dia Vencimento: <%out.print(lstCartao.get(controle).getDia_pagamento());%></td>
+               <td colspan="2">&nbsp;</td>
+           </tr>
+                      
+       <%         
+                if(controle < (lstCartao.size() - 1)){
+                    out.print("<tr><td colspan='4'><hr width='100%'></td></tr>");
+                }
+           }
+            
+       %>
+       </table>
    
    </div>  
    
