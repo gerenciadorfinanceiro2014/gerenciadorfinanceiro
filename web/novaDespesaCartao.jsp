@@ -97,7 +97,7 @@ if (session.getAttribute("idUsuario") == null)
    <td colspan="26"><img name="novadespesacartao_r5_c11" src="img/novadespesacartao/novadespesacartao_r5_c11.png" width="533" height="32" border="0" id="novadespesacartao_r5_c11" alt="" /></td>
    <td>
    
-   <input type="image" src="img/novadespesacartao/novadespesacartao_r5_c37.png" name="btnCadastrar" width="38" height="32" border="0" onClick="document.formCadastro.submit()" />
+   <input type="image" tabindex="8"  src="img/novadespesacartao/novadespesacartao_r5_c37.png" name="btnCadastrar" width="38" height="32" border="0" onClick="document.formCadastro.submit()" />
 	
    </td>
    <td>&nbsp;</td>
@@ -135,7 +135,7 @@ if (session.getAttribute("idUsuario") == null)
      <td rowspan="2"><img name="novadespesacartao_r10_c28" src="img/novadespesacartao/novadespesacartao_r10_c28.png" width="35" height="34" border="0" id="novadespesacartao_r10_c28" alt="" /></td>
    <td rowspan="2" colspan="5">
    
-   <input name="txtData" type="text" required="required" style="width:148px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
+   <input name="txtData" type="text" tabindex="2" maxlength="55" required="required" style="width:148px; height:30px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
 
    <td><img src="img/novadespesacartao/spacer.gif" width="1" height="1" border="0" alt="" /></td>
   </tr>
@@ -156,7 +156,7 @@ if (session.getAttribute("idUsuario") == null)
 
         </script>
    
-   <input name="txtValor" type="text" required="required" onkeypress = "return somenteNumeros(event);" style="width:117px; height:28px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
+       <input name="txtValor" tabindex="1" maxlength="55" type="text" required="required" onkeypress = "return somenteNumeros(event);" style="width:117px; height:28px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:right;" />
    
 	</td>
    <td><img src="img/novadespesacartao/spacer.gif" width="1" height="33" border="0" alt="" /></td>
@@ -184,7 +184,7 @@ if (session.getAttribute("idUsuario") == null)
   <tr>
    <td rowspan="2" colspan="25" >
    
-   <input type="text" required="required" maxlength="55" tabindex="1" name="txtDescricao" style="width:489px; height:28px;" border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:left;/>
+   <input type="text"  required="required" required="required" maxlength="55" tabindex="3" name="txtDescricao" style="width:489px; height:28px;" border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-right:1px solid #7F9DB9; text-align:left;/>
    
 	</td>
    <td><img src="img/novadespesacartao/spacer.gif" width="1" height="25" border="0" alt="" /></td>
@@ -214,14 +214,14 @@ if (session.getAttribute("idUsuario") == null)
    <td rowspan="2" colspan="3"><img name="novadespesacartao_r21_c21" src="img/novadespesacartao/novadespesacartao_r21_c21.png" width="38" height="29" border="0" id="novadespesacartao_r21_c21" alt="" /></td>
    <td rowspan="2" colspan="3">
    
-   <input name="txtQuantidade" type="text" onkeypress = "return somenteNumeros(event);" style="width:60px; height:25px;" />
+   <input name="txtQuantidade" required="required" tabindex="4" maxlength="55" type="text" onkeypress = "return somenteNumeros(event);" style="width:60px; height:25px;" />
    
    	</td>
    <td rowspan="2" colspan="4"><img name="novadespesacartao_r21_c27" src="img/novadespesacartao/novadespesacartao_r21_c27.png" width="61" height="29" border="0" id="novadespesacartao_r21_c27" alt="" /></td>
    <td rowspan="2" colspan="2"><img name="novadespesacartao_r21_c31" src="img/novadespesacartao/novadespesacartao_r21_c31.png" width="43" height="29" border="0" id="novadespesacartao_r21_c31" alt="" /></td>
    <td rowspan="2">
    
-   <input name="txtValorParcelado" type="text" onkeypress = "return somenteNumeros(event);" style="width:79px; height:25px;" />
+   <input name="txtValorParcelado" required="required" tabindex="5" maxlength="55" type="text" onkeypress = "return somenteNumeros(event);" style="width:79px; height:25px;" />
    
 	</td>
    <td><img src="img/novadespesacartao/spacer.gif" width="1" height="10" border="0" alt="" /></td>
@@ -267,7 +267,7 @@ if (session.getAttribute("idUsuario") == null)
   <tr>
    <td rowspan="2" colspan="15">
    
-   <select name="txtCategoriaDespesa" style="width:200px; height:30px;">
+   <select name="txtCategoriaDespesa" required="required" tabindex="6"  style="width:200px; height:30px;">
    	<%
                 CategoriaDAO catDAO = new CategoriaDAO();
                 ArrayList<Categoria> listaCategoria = catDAO.Consultar();
@@ -281,7 +281,7 @@ if (session.getAttribute("idUsuario") == null)
 	</td>
    <td rowspan="2" colspan="9">
    
-   <select name="txtCartaoDespesa" style="width:196px; height:30px;">
+   <select name="txtCartaoDespesa"  required="required" tabindex="7"  style="width:196px; height:30px;">
    	
        <%
                 CartaoDAO cDAO = new CartaoDAO();
