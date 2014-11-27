@@ -37,7 +37,7 @@
                 int dia = Integer.parseInt(data[0]);
                 int mes = Integer.parseInt(data[1]);
                 int ano = Integer.parseInt(data[2]);
-                Date dataReceita = new Date(ano - 1900, mes, dia, new Date().getHours(), new Date().getMinutes(), new Date().getSeconds());
+                Date dataReceita = new Date(ano - 1900, mes - 1, dia, new Date().getHours(), new Date().getMinutes(), new Date().getSeconds());
             
                 receita.setData(dataReceita);
             }
@@ -60,6 +60,8 @@
                        receita.setNum_parcela(controle);
                        if(controle > 1){
                            receita.setValor(Double.parseDouble(request.getParameter("txtValorParcela").trim()));
+                           Date data = new Date(receita.getData().getYear(),receita.getData().getMonth() + 1,receita.getData().getDay(),receita.getData().getHours(),receita.getData().getMinutes(),receita.getData().getSeconds());
+                           receita.setData(data);
                            receita.setEfetuada(0);
                        }
                        rDAO.Salvar(receita);        

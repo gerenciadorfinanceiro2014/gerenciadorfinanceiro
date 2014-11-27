@@ -27,12 +27,6 @@
 <jsp:setProperty name="receita"
                          property="descricao"
                          param="txtTitulo" />
-         <jsp:setProperty name="receita"
-                         property="num_parcela"
-                         param="txtQtd" />
-        <jsp:setProperty name="receita"
-                         property="valor"
-                         param="txtValorParcela" />
         
        <%
            
@@ -46,12 +40,16 @@
            receita.setConta(conta);
            
                 receita.setId(Integer.parseInt(request.getParameter("idReceita")));
-                
-                 String[] data = request.getParameter("txtData").toString().split("/");
+                if(request.getParameter("efetuada") != null){
+                    receita.setEfetuada(1);
+                }else{
+                    receita.setEfetuada(0);
+                }
+                String[] data = request.getParameter("txtData").toString().split("/");
                 int dia = Integer.parseInt(data[0]);
-                int mes = Integer.parseInt(data[1]) - 1;
+                int mes = Integer.parseInt(data[1]);
                 int ano = Integer.parseInt(data[2]);
-                 Date dataDespesa = new Date(ano - 1900, mes , dia, new Date().getHours(), new Date().getMinutes(), new Date().getSeconds());
+                 Date dataDespesa = new Date(ano - 1900, mes - 1, dia, new Date().getHours(), new Date().getMinutes(), new Date().getSeconds());
                  receita.setData(dataDespesa);
                 ReceitaDAO rDAO = new ReceitaDAO();
                 

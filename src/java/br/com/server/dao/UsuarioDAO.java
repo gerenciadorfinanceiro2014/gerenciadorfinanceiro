@@ -105,11 +105,16 @@ public class UsuarioDAO {
                 String senha = usuario.getSenha();
                 String email = usuario.getEmail();
                 
+                System.out.println("update usuario set nome='"+nome+"', "
+                        + "login='"+login+"',senha='"+senha+", email='"+email+
+                        " where id="+id);
+                
+                
                 //comando do Hibernate para inclusão de linhas SQLs comuns, neste caso o update
                 //temos que inserir a Classe que se refere e executar o comando ao final
                 s.createSQLQuery("update usuario set nome='"+nome+"', "
-                        + "login='"+login+"',senha='"+senha+", email='"+email+
-                        " where id="+id).addEntity(Usuario.class).executeUpdate();
+                        + "login='"+login+"',senha='"+senha+"', email='"+email+
+                        "' where id="+id).addEntity(Usuario.class).executeUpdate();
             } 
             s.getTransaction().commit();//executa a transação
             s.close();//fecha a conexão
