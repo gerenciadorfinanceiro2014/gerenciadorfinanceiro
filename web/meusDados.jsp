@@ -67,7 +67,7 @@
   </tr>
   <form action="salvareditarusuario.jsp" method="post" >
   <tr>
-   <td rowspan="3"><input type="image" src="img/meusDados/meusDados_r8_c10.png" name="btnCadastrar" width="41" height="35" border="0" onClick="document.formCadastro.submit()" /></td>
+   <td rowspan="3"><input type="image"  tabindex="5" src="img/meusDados/meusDados_r8_c10.png" name="btnCadastrar" width="41" height="35" border="0" onClick="document.formCadastro.submit()" /></td>
    <td rowspan="10">&nbsp;</td>
    <td><img src="img/meusDados/spacer.gif" width="1" height="5" border="0" alt="" /></td>
   </tr>
@@ -76,7 +76,7 @@
    <td><img src="img/meusDados/spacer.gif" width="1" height="2" border="0" alt="" /></td>
   </tr>
   <tr>
-   <td rowspan="2" colspan="4"><input type="text" name="txtNome" value="<% out.print(usuario.getNome()); %>" style="width:276px; height:25px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-left:1px solid #7F9DB9; border-right:1px solid #7F9DB9;" /></td>
+      <td rowspan="2" colspan="4"><input type="text" maxlength="55" tabindex="1" name="txtNome" value="<% out.print(usuario.getNome()); %>" style="width:276px; height:25px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-left:1px solid #7F9DB9; border-right:1px solid #7F9DB9;" /></td>
    <td><img src="img/meusDados/spacer.gif" width="1" height="28" border="0" alt=""  /></td>
   </tr>
   <tr>
@@ -92,7 +92,7 @@
    <td><img src="img/meusDados/spacer.gif" width="1" height="28" border="0" alt="" /></td>
   </tr>
   <tr>
-      <td rowspan="2" colspan="4"><input type="text" name="txtEmail" value="<% if(usuario.getEmail() != null && !usuario.getEmail().equals("null")) out.print(usuario.getEmail()); %>" style="width:276px; height:25px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-left:1px solid #7F9DB9; border-right:1px solid #7F9DB9;" /></td>
+      <td rowspan="2" colspan="4"><input type="text" maxlength="55" tabindex="2" name="txtEmail" value="<% if(usuario.getEmail() != null && !usuario.getEmail().equals("null")) out.print(usuario.getEmail()); %>" style="width:276px; height:25px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-left:1px solid #7F9DB9; border-right:1px solid #7F9DB9;" /></td>
    <td><img src="img/meusDados/spacer.gif" width="1" height="2" border="0" alt=""  /></td>
   </tr>
   <tr>
@@ -110,8 +110,8 @@
    <td><img src="img/meusDados/spacer.gif" width="1" height="23" border="0" alt="" /></td>
   </tr>
   <tr>
-   <td rowspan="2" colspan="2"><input type="text" name="txtLogin" value="<% out.print(usuario.getLogin()); %>" style="width:170px; height:25px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-left:1px solid #7F9DB9; border-right:1px solid #7F9DB9;" /></td>
-   <td rowspan="2" colspan="3"><input type="password" name="txtSenha" value="<% out.print(usuario.getSenha()); %>" style="width:170px; height:25px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-left:1px solid #7F9DB9; border-right:1px solid #7F9DB9;" /></td>
+   <td rowspan="2" colspan="2"><input type="text" maxlength="55" tabindex="3" name="txtLogin" value="<% out.print(usuario.getLogin()); %>" style="width:170px; height:25px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-left:1px solid #7F9DB9; border-right:1px solid #7F9DB9;" /></td>
+   <td rowspan="2" colspan="3"><input type="password" maxlength="55" tabindex="4" name="txtSenha" value="<% out.print(usuario.getSenha()); %>" style="width:170px; height:25px; border-left:hidden; border-top:1px solid #7F9DB9; border-bottom:1px solid #7F9DB9; border-left:1px solid #7F9DB9; border-right:1px solid #7F9DB9;" /></td>
    <td rowspan="2">&nbsp;</td>
    <td><img src="img/meusDados/spacer.gif" width="1" height="7" border="0" alt="" /></td>
   </tr>
